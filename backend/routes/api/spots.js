@@ -215,9 +215,76 @@ router.post('/', requireAuth, validateNewSpot, async (req, res) => {
         price: price
     })
 
-    res.json(newSpot)
+    res.status(201).json(newSpot)
 })
 
+router.post('/:spotid/images', requireAuth, async (req, res, next) => {
+    const { url, preview } = req.body
+    const spot = await Spot.findByPk(req.params.spotid, {
+        attributes: ['ownerId']
+    })
+    if (spot.ownerId !== req.user.id) {
+        const err = new Error()
+        err.status = 403
+        err.message = "Invalid permissions"
+        next(err)
+    }
+
+    if (!spot) {
+        const err = new Error()
+        err.status = 404
+        err.message = "Spot couldn't be found"
+        next(err)
+    }
+
+    const newSpotImage = await Spotimage.create({
+        spotId: req.params.spotid,
+        url: url,
+        preview: preview
+    })
+    const newImage = newSpotImage.toJSON()
+    delete newImage.spotId
+    delete newImage.updatedAt
+    delete newImage.createdAt
+
+    res.json(newImage)
+})
+
+router.put('/:spotId', requireAuth, validateNewSpot, async (req, res, next) => {
+    const { address, city, state, country, lat, lng, name, description, price } = req.body
+    const spot = await Spot.findByPk(req.params.spotId)
+
+    if (!spot) {
+        const err = new Error()
+        err.status = 404
+        err.message = "Spot couldn't be found"
+        next(err)
+    }
+    if (spot.ownerId !== req.user.id) {
+        const err = new Error()
+        err.status = 403
+        err.message = "Invalid permissions"
+        next(err)
+    }
+
+        await spot.update({
+            address,
+            city,
+            state,
+            country,
+            lat,
+            lng,
+            name,
+            description,
+            price
+        })
+
+        await spot.save()
+
+
+    res.json(spot)
+
+})
 
 
 
