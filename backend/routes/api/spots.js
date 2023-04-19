@@ -226,7 +226,7 @@ router.post('/:spotid/images', requireAuth, async (req, res, next) => {
     if (spot.ownerId !== req.user.id) {
         const err = new Error()
         err.status = 403
-        err.message = "Invalid permissions"
+        err.message = "Forbidden"
         next(err)
     }
 
@@ -255,17 +255,12 @@ router.put('/:spotId', requireAuth, validateNewSpot, async (req, res, next) => {
     const spot = await Spot.findByPk(req.params.spotId)
 
     if (!spot) {
-        const err = new Error()
-        err.status = 404
-        err.message = "Spot couldn't be found"
-        next(err)
+        return res.status(404).json({message: "Spot couldn't be found"})
     }
     if (spot.ownerId !== req.user.id) {
-        const err = new Error()
-        err.status = 403
-        err.message = "Invalid permissions"
-        next(err)
+        return res.status(403).json({message: "Forbidden"})
     }
+
 
         await spot.update({
             address,
