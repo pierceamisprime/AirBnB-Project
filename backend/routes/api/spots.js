@@ -3,7 +3,7 @@ const { Op } = require('sequelize');
 const bcrypt = require('bcryptjs');
 
 const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
-const { User, Spot, Review, Spotimage, sequelize} = require('../../db/models');
+const { User, Spot, Review, Spotimage, ReviewImage } = require('../../db/models');
 
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -295,6 +295,74 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
 
     res.json({message: "Successfully deleted"})
 
+
+})
+
+router.get('/:spotId/reviews', async (req, res) => {
+    const reviews = await Review.findAll({
+        where: {
+            spotId: req.params.spotId
+        },
+        include: [
+            {
+                model: ReviewImage,
+                attributes: ['id', 'url']
+            },
+            {
+                model: User,
+                attributes: ['id', 'firstName', 'lastName']
+            }
+        ]
+    })
+    const spot = await Spot.findByPk(req.params.spotId)
+    if (!spot) {
+        return res.status(404).json({message: "Spot couldn't be found"})
+    }
+
+    res.json({Reviews: reviews})
+})
+
+const validateReview = [
+    check('review')
+      .exists({ checkFalsy: true })
+      .notEmpty()
+      .withMessage("Review text is required"),
+    check('stars')
+      .exists({ checkFalsy: true })
+      .notEmpty()
+      .isInt({min:1,max:5})
+      .withMessage("Stars must be an integer from 1 to 5"),
+      handleValidationErrors
+]
+
+router.post('/:spotId/reviews', requireAuth, validateReview, async (req, res) => {
+    const { review, stars } = req.body
+
+    const spot = await Spot.findByPk(req.params.spotId)
+
+    const reviewsForSpot = await Review.findOne({
+        where: {
+            userId: req.user.id,
+            spotId: spot.id
+        }
+    })
+    if (reviewsForSpot) {
+        return res.status(500).json({message: "User already has a review for this spot"})
+    }
+
+    if (!spot) {
+        return res.status(404).json({message: "Spot couldn't be found"})
+    }
+
+    const newReview = await Review.create({
+        userId: req.user.id,
+        spotId: spot.id,
+        review: review,
+        stars: stars
+    })
+
+
+    res.status(201).json(newReview)
 
 })
 
