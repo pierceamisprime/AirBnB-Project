@@ -91,8 +91,8 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
 
 
     for (let i = 0; i < bookingArray.length; i++) {
-        console.log(bookingArray)
-        if (newStartDate.getTime() === bookingArray[i].startDate.getTime() || newEndDate.getTime() === bookingArray[i].endDate.getTime()) {
+
+        if ((newStartDate.getTime() <= bookingArray[i].startDate.getTime() && bookingArray[i].endDate <= newEndDate.getTime()) || (newEndDate.getTime() <= bookingArray[i].endDate.getTime() && newEndDate.getTime() >= bookingArray[i].startDate.getTime())) {
             return res.status(403).json({
                 message: "Sorry, this spot is already booked for the specified dates",
                 errors: {
