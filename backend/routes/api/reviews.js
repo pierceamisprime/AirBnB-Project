@@ -126,6 +126,9 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
     if (!reviewToEdit) {
         return res.status(404).json({message: "Review couldn't be found"})
     }
+    if (reviewToEdit.userId !== req.user.id) {
+        return res.status(403).json({message: "Forbidden"})
+    }
 
     await reviewToEdit.update({
         review,
