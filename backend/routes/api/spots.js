@@ -150,8 +150,8 @@ router.get('/:spotId', async (req, res, next) => {
             }
         })
         delete spot.Reviews
-        spot['Owner'] = spot['User']; // Assign new key
-        delete spot['User']; // Delete old key
+        spot['Owner'] = spot['User'];
+        delete spot['User'];
     })
 
     res.json(...spotDetails)
