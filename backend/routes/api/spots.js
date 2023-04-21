@@ -14,13 +14,11 @@ const router = express.Router();
 
 const validateGetSpotsQuery = [
     check('page')
-       .exists({ checkFalsy: true })
-       .notEmpty()
+       .optional()
       .isInt({min: 1})
       .withMessage("Page must be greater than or equal to 1"),
     check('size')
-      .exists({ checkFalsy: true })
-      .notEmpty()
+      .optional()
       .isInt({min:1})
       .withMessage("Size must be greater than or equal to 1"),
     check('minLat')

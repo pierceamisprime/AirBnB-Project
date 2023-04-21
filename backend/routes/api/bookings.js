@@ -59,6 +59,12 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
 
     const booking = await Booking.findByPk(req.params.bookingId)
 
+    if (!booking) {
+        return res.status(404).json({message: "Booking couldn't be found"})
+    }
+    if (booking.userId !== req.user.id) {
+        return res.status(403).json({message: "Forbidden"})
+    }
     const bookingStartDate = await Booking.findOne({
         where: {
             spotId: booking.spotId,
@@ -78,12 +84,6 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
     })
 
 
-    if (!booking) {
-        return res.status(404).json({message: "Booking couldn't be found"})
-    }
-    if (booking.userId !== req.user.id) {
-        return res.status(403).json({message: "Forbidden"})
-    }
     if (newStartDate.getTime() >= newEndDate.getTime()) {
         return res.status(400).json({
             message: "Bad Request",
