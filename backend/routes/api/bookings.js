@@ -59,6 +59,24 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
 
     const booking = await Booking.findByPk(req.params.bookingId)
 
+    const bookingStartDate = await Booking.findOne({
+        where: {
+            spotId: booking.spotId,
+            startDate: {
+                [Op.between]: [newStartDate, newEndDate]
+            }
+        }
+    })
+
+    const bookingEndDate = await Booking.findOne({
+        where: {
+            spotId: booking.spotId,
+            endDate: {
+                [Op.between]: [newStartDate, newEndDate]
+            }
+        }
+    })
+
 
     if (!booking) {
         return res.status(404).json({message: "Booking couldn't be found"})
@@ -74,33 +92,19 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
             }
         })
     }
-    if (newEndDate.getTime() > Date.now()) {
+    let currentTime = new Date().getTime()
+    if (currentTime > newStartDate) {
         return res.status(403).json({message: "Past bookings can't be modified"})
     }
-    const spotId = booking.spotId
 
-    const spot = await Spot.findByPk(spotId, {
-        include: [
-            {
-                model: Booking
+    if (bookingStartDate || bookingEndDate) {
+        return res.status(403).json({
+            message: "Sorry, this spot is already booked for the specified dates",
+            errors: {
+              startDate: "Start date conflicts with an existing booking",
+              endDate: "End date conflicts with an existing booking"
             }
-        ]
-    })
-    const spotBooking = spot.toJSON()
-    const bookingArray = spotBooking.Bookings
-
-
-    for (let i = 0; i < bookingArray.length; i++) {
-
-        if ((newStartDate.getTime() <= bookingArray[i].startDate.getTime() && bookingArray[i].endDate <= newEndDate.getTime()) || (newEndDate.getTime() <= bookingArray[i].endDate.getTime() && newEndDate.getTime() >= bookingArray[i].startDate.getTime())) {
-            return res.status(403).json({
-                message: "Sorry, this spot is already booked for the specified dates",
-                errors: {
-                  startDate: "Start date conflicts with an existing booking",
-                  endDate: "End date conflicts with an existing booking"
-                }
-            })
-    }
+        })
 }
 
     await booking.update({

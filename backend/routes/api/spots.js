@@ -7,11 +7,103 @@ const { User, Spot, Review, Spotimage, ReviewImage, Booking } = require('../../d
 
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
+const { query } = require('express');
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
-    const Spots = await Spot.findAll({
+
+const validateGetSpotsQuery = [
+    check('page')
+       .exists({ checkFalsy: true })
+       .notEmpty()
+      .isInt({min: 1})
+      .withMessage("Page must be greater than or equal to 1"),
+    check('size')
+      .exists({ checkFalsy: true })
+      .notEmpty()
+      .isInt({min:1})
+      .withMessage("Size must be greater than or equal to 1"),
+    check('minLat')
+      .optional(true)
+      .isDecimal()
+      .withMessage("Minimum latitude is invalid"),
+    check('maxLat')
+      .optional(true)
+      .isDecimal()
+      .withMessage("Maximum latitude is invalid"),
+    check('minLng')
+      .optional(true)
+      .isDecimal()
+      .withMessage("Minimum longitude is invalid"),
+    check('maxLng')
+      .optional(true)
+      .isDecimal()
+      .withMessage("Maximum longitude is invalid"),
+    check('minPrice')
+      .optional(true)
+      .isFloat({min: 0})
+      .withMessage("Minimum price must be greater than or equal to 0"),
+    check('maxPrice')
+      .optional(true)
+      .isFloat({min: 0})
+      .withMessage("Maximum price must be greater than or equal to 0"),
+      handleValidationErrors
+]
+
+router.get('/', validateGetSpotsQuery, async (req, res) => {
+    let query = {
+        where: {},
+        include: []
+
+    }
+    query.include.push({
+        model: Review
+    })
+    query.include.push({
+        model: Spotimage
+    })
+    const { minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query
+
+    let page = req.query.page === undefined ? 1 : parseInt(req.query.page);
+    let size = req.query.size === undefined ? 20 : parseInt(req.query.size);
+    if (page >= 1 && size >= 1) {
+        query.limit = size;
+        query.offset = size * (page - 1);
+    }
+    if (page > 10) page = 10;
+    if (size > 20) size = 20
+
+    if (minLat) {
+        query.where.lat = {[Op.gte]: minLat}
+    }
+    if (maxLat) {
+        query.where.lat = {[Op.lte]: maxLat}
+    }
+    if (minLat && maxLat) {
+        query.where.lat = {[Op.between]: [minLat, maxLat]}
+    }
+    if (minLng) {
+        query.where.lng = {[Op.gte]: minLng}
+    }
+    if (maxLng) {
+        query.where.lng = {[Op.lte]: maxLng}
+    }
+    if (minLng && maxLng) {
+        query.where.lng = {[Op.between]: [minLng, maxLng]}
+    }
+    if (minPrice) {
+        query.where.price = {[Op.gte]: minPrice}
+    }
+    if (maxPrice) {
+        query.where.price = {[Op.lte]: maxPrice}
+    }
+    // [Op.lte]: 10,   // <= 10
+    if (minPrice && maxPrice) {
+        query.where.price = {[Op.between]: [minPrice, maxPrice]}
+    }
+
+
+    const Spots = await Spot.findAndCountAll(query, {
         include: [ {
             model: Review,
 
@@ -25,9 +117,11 @@ router.get('/', async (req, res) => {
     });
     let SpotsList = []
 
-    Spots.forEach(spot => {
+
+    Spots.rows.forEach(spot => {
         SpotsList.push(spot.toJSON())
     });
+
 
     SpotsList.forEach(spot => {
         let count = 0
@@ -52,9 +146,18 @@ router.get('/', async (req, res) => {
         })
         delete spot.Spotimages
         delete spot.Reviews
-    })
 
-    res.json({Spots: SpotsList});
+    })
+    const Allspots = {}
+    Allspots.Spot = SpotsList
+
+    let pageNum = Number(page)
+    let sizeNum = Number(size)
+
+    Allspots.page = pageNum
+    Allspots.size = sizeNum
+
+    res.json(Allspots);
 })
 
 router.get('/current', requireAuth, async (req, res) => {
@@ -413,12 +516,24 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
     const newStartDate = new Date(startDate)
     const newEndDate = new Date(endDate)
 
-    const spot = await Spot.findByPk(req.params.spotId, {
-        include: [
-            {
-                model: Booking
+    const spot = await Spot.findByPk(req.params.spotId)
+
+    const bookingStartDate = await Booking.findOne({
+        where: {
+            spotId: Number(req.params.spotId),
+            startDate: {
+                [Op.between]: [newStartDate, newEndDate]
             }
-        ]
+        }
+    })
+
+    const bookingEndDate = await Booking.findOne({
+        where: {
+            spotId: Number(req.params.spotId),
+            endDate: {
+                [Op.between]: [newStartDate, newEndDate]
+            }
+        }
     })
     if (!spot) {
         return res.status(404).json({message: "Spot couldn't be found"})
@@ -430,12 +545,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
         return res.status(400).json({message: "Bad Request", errors: { endDate: "endDate cannot be on or before startDate"}})
     }
 
-    const spotBookings = spot.toJSON()
-    const bookingArray = spotBookings.Bookings
-
-    for (let i = 0; i < bookingArray.length; i++) {
-
-        if ((newStartDate.getTime() <= bookingArray[i].startDate.getTime() && bookingArray[i].endDate <= newEndDate.getTime()) || (newEndDate.getTime() <= bookingArray[i].endDate.getTime() && newEndDate.getTime() >= bookingArray[i].startDate.getTime())) {
+        if (bookingStartDate || bookingEndDate) {
             return res.status(403).json({
                 message: "Sorry, this spot is already booked for the specified dates",
                 errors: {
@@ -444,7 +554,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
                 }
             })
     }
-}
+
 
     const newBooking = await Booking.create({
         spotId: req.params.spotId,
