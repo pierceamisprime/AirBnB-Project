@@ -326,19 +326,21 @@ router.post('/:spotid/images', requireAuth, async (req, res, next) => {
     const spot = await Spot.findByPk(req.params.spotid, {
         attributes: ['ownerId']
     })
-    if (spot.ownerId !== req.user.id) {
-        const err = new Error()
-        err.status = 403
-        err.message = "Forbidden"
-        next(err)
-    }
-
     if (!spot) {
         const err = new Error()
         err.status = 404
         err.message = "Spot couldn't be found"
         next(err)
+        return;
     }
+    if (spot.ownerId !== req.user.id) {
+        const err = new Error()
+        err.status = 403
+        err.message = "Forbidden"
+        next(err)
+        return;
+    }
+
 
     const newSpotImage = await Spotimage.create({
         spotId: req.params.spotid,
