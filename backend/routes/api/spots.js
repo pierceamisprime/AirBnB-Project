@@ -147,7 +147,7 @@ router.get('/', validateGetSpotsQuery, async (req, res) => {
 
     })
     const Allspots = {}
-    Allspots.Spot = SpotsList
+    Allspots.Spots = SpotsList
 
     let pageNum = Number(page)
     let sizeNum = Number(size)
