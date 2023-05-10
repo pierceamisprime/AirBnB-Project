@@ -55,7 +55,7 @@ module.exports = {
       price: 725.00
     },
     {
-      ownerId: 4,
+      ownerId: 1,
       address: '150 E 58th St',
       city: 'New York',
       state: 'New York',
@@ -67,7 +67,7 @@ module.exports = {
       price: 150.00
     },
     {
-      ownerId: 5,
+      ownerId: 2,
       address: '747 Market St',
       city: 'San Francisco',
       state: 'California',
@@ -79,7 +79,7 @@ module.exports = {
       price: 425.50
     },
     {
-      ownerId: 6,
+      ownerId: 3,
       address: '4 Astor PI',
       city: 'New York',
       state: 'New York',
@@ -91,7 +91,7 @@ module.exports = {
       price: 850.75
     },
     {
-      ownerId: 7,
+      ownerId: 1,
       address: '245 Raven Rd',
       city: 'Ketchum',
       state: 'Idaho',
@@ -103,7 +103,7 @@ module.exports = {
       price: 650.00
     },
     {
-      ownerId: 8,
+      ownerId: 2,
       address: '500 N Kingsbury',
       city: 'Chicago',
       state: 'Illinois',
@@ -115,7 +115,7 @@ module.exports = {
       price: 195.00
     },
     {
-      ownerId: 9,
+      ownerId: 3,
       address: '2629 E Rose Garden Ln',
       city: 'Phoenix',
       state: 'Arizona',
@@ -127,7 +127,7 @@ module.exports = {
       price: 900.00
     },
     {
-      ownerId: 10,
+      ownerId: 1,
       address: '524 N Lamar Blvd Suite 300',
       city: 'Austin',
       state: 'Texas',
