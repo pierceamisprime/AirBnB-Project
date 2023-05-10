@@ -24,11 +24,30 @@ function LoginFormModal() {
             });
     };
 
+    const demoUser = () => {
+        let credential = 'optimusprime'
+        let password = 'password'
+        return dispatch(sessionActions.login({ credential, password })).then(closeModal)
+    }
+
+
+    const disabled = (credential, password) => credential.length >= 4 && password.length >= 6 ? false : true;
+
+    const disabledFuncReturn = disabled(credential, password);
+
+
+    const buttonClassFunc = (disabledFuncReturn) => {
+      let buttonClass;
+      if (disabledFuncReturn) buttonClass = 'nice-button hover-off';
+      else buttonClass = 'nice-button'
+      return buttonClass;
+    }
+
     return (
-        <>
+        <div className="login-container">
             <h1>Log In</h1>
             <form onSubmit={handleSubmit}>
-                <label>
+                <label className="label">
                     Username or Email
                     <input
                         type="text"
@@ -37,7 +56,7 @@ function LoginFormModal() {
                         required
                     />
                 </label>
-                <label>
+                <label className="label">
                     Password
                     <input
                         type="password"
@@ -47,11 +66,12 @@ function LoginFormModal() {
                     />
                 </label>
                 {errors.credential && (
-                    <p>{errors.credential}</p>
+                    <p className="display-errors">{errors.credential}</p>
                 )}
-                <button type="submit">Log In</button>
+                <button type="submit" disabled={disabledFuncReturn} className={buttonClassFunc}>Log In</button>
             </form>
-        </>
+                <p className="demo-user" onClick={demoUser}>Log In as Demo User</p>
+        </div>
     );
 }
 

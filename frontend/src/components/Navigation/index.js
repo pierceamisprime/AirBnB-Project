@@ -8,9 +8,12 @@ function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
 
     return (
-        <ul>
-            <li>
-                <NavLink exact to="/">Home</NavLink>
+        <ul className='nav'>
+            <li className='home'>
+                <NavLink className='link-home' exact to="/"><i class="fa-solid fa-dumbbell fa-2xl" style={{color: "#FF5A5F",}} />   fitbnb</NavLink>
+            </li>
+            <li className='create-spot'>
+                <NavLink className= 'link-new' to='/spots/new'>Create a New Spot</NavLink>
             </li>
             {isLoaded && (
                 <li>
