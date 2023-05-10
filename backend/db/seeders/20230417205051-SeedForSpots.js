@@ -27,7 +27,7 @@ module.exports = {
       lat: 522.4760827,
       lng: 543.5564378,
       name: '24 Hour Fitness',
-      description: "Celebrating over 35 years as an industry leader, 24 Hour Fitness is committed to creating a healthier, happier world through fitness with nearly 300 clubs in 11 states nationwide. We know your time in the gym is critical to maintaining your physical and mental well-being, so we provide welcoming and inclusive environments, with thousands of square feet of premium strength and cardio equipment, turf zones, free weights, functional training areas and more. Studio and cycle classes, personal training, and innovative digital and virtual offerings are all available options to help you keep your mind and body fit, so you can reset your next 24 hours and be prepared for what’s next.",
+      description: "Celebrating over 35 years as an industry leader, 24 Hour Fitness is committed to creating a healthier, happier world through fitness with nearly 300 clubs in 11 states nationwide. We know your time in the gym is critical to maintaining your physical and mental well-being, so we provide welcoming and inclusive environments, with thousands of square feet of premium strength and cardio equipment, turf zones, free weights, functional training areas and more.",
       price: 100.50
     },
     {
@@ -37,7 +37,7 @@ module.exports = {
       state: 'California',
       country: 'United States',
       lat: 522.4765637,
-      lng: -122.5564378,
+      lng: -122.5564789,
       name: 'Zoo Culture',
       description: "Since opening in 2017, Zoo culture has set the standard when it comes to creating a healthy, non judgemental workout zone. Offering top tier equipment including dumbbells 2.5-200lb, tons of powerracks, and a turf field. We offer personal training and day passes if you're just in town visiting.",
       price: 450.00
@@ -87,7 +87,7 @@ module.exports = {
       lat: 908.4723526,
       lng: 105.3264378,
       name: 'TMPL',
-      description: "David Barton's newest endeavor is TMPL, the West Side gym of 40,000 square feet that includes a saltwater pool, 20 tons of free weights, an immersive spin theater and all of the latest and greatest tech in the fitness space. Schedule a meeting with one of the many top personal trainers and they’ll walk you through your M.A.P., a metabolic assessment profile that looks at your entire health — weight, sleep, hormones and energy — to form a comprehensive training plan. TMPL has one of the only Styku machines in the city, which measures your body’s fat, muscle and water.",
+      description: "David Barton's newest endeavor is TMPL, the West Side gym of 40,000 square feet that includes a saltwater pool, 20 tons of free weights, an immersive spin theater and all of the latest and greatest tech in the fitness space. Schedule a meeting with one of the many top personal trainers and they’ll walk you through your M.A.P., a metabolic assessment profile that looks at your entire health — weight, sleep, hormones and energy — to form a comprehensive training plan.",
       price: 850.75
     },
     {
@@ -99,7 +99,7 @@ module.exports = {
       lat: 120.4723526,
       lng: 461.3214098,
       name: 'Zenergy Health Club',
-      description: "Built as a full-service spa and health center, Zenergy is the perfect place for Sun Valley’s elite to stay in shape when not out on the mountain or wading into the river to fly-fish. Not only does Zenergy offer massage therapy, the 48,000-square-foot facility also offers acupuncture, reflexology, a nail salon, and Greg Hinshaw’s hair studio and tanning services (if you’re into that sort of thing). There is also a squash court, pilates studio, indoor cycling center, and yoga studio.",
+      description: "Built as a full-service spa and health center, Zenergy is the perfect place for Sun Valley’s elite to stay in shape when not out on the mountain or wading into the river to fly-fish. Not only does Zenergy offer massage therapy, the 48,000-square-foot facility also offers acupuncture, reflexology, a nail salon, and Greg Hinshaw’s hair studio and tanning services (if you’re into that sort of thing). There is also a squash court, and pilates studio!",
       price: 650.00
     },
     {
@@ -135,7 +135,7 @@ module.exports = {
       lat: 503.4726626,
       lng: 435.7554334,
       name: 'Mecca Gym',
-      description: "If you’re into meditation and relaxation, this spa and gym is for you. Add a jolt to your fitness routine with a three or six-week private training program and you’ll get two one-hour sessions with a trainer, as well as a fitness assesment. Everyone’s got to start somewhere. Post-class, grab a smoothie (or wine and beer if that’s more your speed post-workout), then pop in the steam room before your deep tissue massage that’s sure to help your recovery.",
+      description: "If you’re into meditation and relaxation, this spa and gym is for you. Add a jolt to your fitness routine with a three or six-week private training program and you’ll get two one-hour sessions with a trainer, as well as a fitness assesment. Everyone’s got to start somewhere. Post-class, grab a smoothie (or wine and beer if that’s more your speed post-workout), then pop in the steam room!",
       price: 150.25
     },
    ])
