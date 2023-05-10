@@ -1,3 +1,45 @@
+.nav {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #CCCCCC;
+    padding: 10px;
+    font-size: 14pt;
+}
+
 .hidden {
     display: none;
+}
+
+.link-home {
+    text-decoration: none;
+    color: #FF5A5F;
+    font-size: large;
+    font-weight: bold;
+    font-size: 24pt;
+}
+
+.link-new {
+    text-decoration: none;
+    color:  #4c4a4a
+}
+
+li {
+    list-style-type: none;
+}
+
+.profile-button {
+    height: 50px;
+    border-radius: 20px;
+    width: 100px;
+
+}
+
+.create-spot {
+    padding-left: 450px;
+}
+
+.home {
+    color: #FF5A5F;
 }

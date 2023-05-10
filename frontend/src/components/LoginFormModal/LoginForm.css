@@ -9,3 +9,24 @@ form {
     width: 80%;
     height: 80%;
 }
+.login-container {
+    border-radius: 20px;
+    box-shadow: 0 3px 7px #010466;
+    background-color: #1c24ff08;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 50px 120px;
+}
+
+.demo-user {
+    color: #010466;
+    font-size: 16px;
+    margin-top: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.demo-user:hover {
+    cursor: pointer;
+    font-weight: bold;
+}

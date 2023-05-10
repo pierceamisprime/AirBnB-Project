@@ -6,6 +6,7 @@ import Navigation from "./components/Navigation";
 import { Route } from "react-router-dom";
 import SpotIndex from "./components/Spots";
 import ViewSingleSpot from "./components/ViewSingleSpot";
+import SpotForm from "./components/CreateSpot/SpotForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,7 +23,10 @@ function App() {
         <Route exact path='/'>
           <SpotIndex />
         </Route>
-        <Route exact path='/spots/:id'>
+        <Route exact path='/spots/new'>
+          <SpotForm />
+        </Route>
+        <Route exact path='/spots/:spotId'>
           <ViewSingleSpot />
         </Route>
 
