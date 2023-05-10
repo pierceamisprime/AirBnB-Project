@@ -30,7 +30,7 @@ module.exports = {
     },
     {
       spotId: 1,
-      url: 'https://www.24hourfitness.com/content/dam/24-hour-fitness/images/clubs/CA/san-diego/00780/image6.jpg',
+      url: 'https://imgur.com/a/Wgn57mg',
       preview: false
     },
     {
@@ -45,7 +45,7 @@ module.exports = {
     },
     {
       spotId: 2,
-      url: 'https://i.ytimg.com/vi/rbgIBq7oJ9o/maxresdefault.jpg',
+      url: 'https://imgur.com/SZiytF5',
       preview: true
     },
     {
