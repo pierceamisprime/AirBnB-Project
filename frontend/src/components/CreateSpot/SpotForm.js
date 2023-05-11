@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 const SpotForm = ({ spot, formType }) => {
-  const { spotId } = useParams()
+ const spotId = spot.id
   const history = useHistory()
   const dispatch = useDispatch()
   const [country, setCountry] = useState(spot?.country || '')
@@ -28,9 +28,12 @@ const SpotForm = ({ spot, formType }) => {
   const [image4, setImage4] = useState('');
   const [errors, setErrors] = useState({});
 
+  console.log('Hello from spotForm')
+
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+      e.preventDefault();
+    //   console.log('Formtype', formType)
     setErrors({})
 
     let errors = {}
@@ -41,12 +44,15 @@ const SpotForm = ({ spot, formType }) => {
     if (description.length < 30) errors.description = "Description needs a minimum of 30 characters"
     if (!name.length) errors.name = "Name is required"
     if (price < 1) errors.price = "Price is required"
-    if (!previewImg) errors.preview = "Preview image is required"
-    if (!(previewImg.endsWith('.jpg') || previewImg.endsWith('.png') || previewImg.endsWith('.jpeg')) && previewImg) errors.preview = "Image URL must end in .png, .jpg, or .jpeg"
-    if (!(image1.endsWith('.jpg') || image1.endsWith('.png') || image1.endsWith('.jpeg')) && image1) errors.image1 = "Image URL must end in .png, .jpg, or .jpeg"
-    if (!(image2.endsWith('.jpg') || image2.endsWith('.png') || image2.endsWith('.jpeg')) && image2) errors.image2 = "Image URL must end in .png, .jpg, or .jpeg"
-    if (!(image3.endsWith('.jpg') || image3.endsWith('.png') || image3.endsWith('.jpeg')) && image3) errors.image3 = "Image URL must end in .png, .jpg, or .jpeg"
-    if (!(image4.endsWith('.jpg') || image4.endsWith('.png') || image4.endsWith('.jpeg')) && image4) errors.image4 = "Image URL must end in .png, .jpg, or .jpeg"
+
+    if (formType === 'post') {
+        if (!previewImg) errors.preview = "Preview image is required"
+        if (!(previewImg.endsWith('.jpg') || previewImg.endsWith('.png') || previewImg.endsWith('.jpeg')) && previewImg) errors.preview = "Image URL must end in .png, .jpg, or .jpeg"
+        if (!(image1.endsWith('.jpg') || image1.endsWith('.png') || image1.endsWith('.jpeg')) && image1) errors.image1 = "Image URL must end in .png, .jpg, or .jpeg"
+        if (!(image2.endsWith('.jpg') || image2.endsWith('.png') || image2.endsWith('.jpeg')) && image2) errors.image2 = "Image URL must end in .png, .jpg, or .jpeg"
+        if (!(image3.endsWith('.jpg') || image3.endsWith('.png') || image3.endsWith('.jpeg')) && image3) errors.image3 = "Image URL must end in .png, .jpg, or .jpeg"
+        if (!(image4.endsWith('.jpg') || image4.endsWith('.png') || image4.endsWith('.jpeg')) && image4) errors.image4 = "Image URL must end in .png, .jpg, or .jpeg"
+    }
     setErrors(errors)
 
     const spotImages = []
@@ -66,23 +72,26 @@ const SpotForm = ({ spot, formType }) => {
         price,
         lat,
         lng,
-        // spotImages: spotImages
 
     }
 
+    console.log('Spot', spot)
 
     if (Object.values(errors).length) {
+        console.log('errors', errors)
         return null
     }
 
+    console.log('FormType', formType)
 
-    let newSpot;
     if (formType === 'put') {
-            newSpot = await dispatch(editSpotThunk(spotForThunk, spotId))
-            history.push(`/spots/${newSpot.id}`)
+         const updatedSpot = await dispatch(editSpotThunk(spotForThunk, spotId))
+            if (updatedSpot) {
+                history.push(`/spots/${updatedSpot.id}`)
+            }
             // console.log(newSpot)
         } else {
-      newSpot = await dispatch(createNewSpot(spotForThunk, spotImages))
+     const newSpot = await dispatch(createNewSpot(spotForThunk, spotImages))
       if (newSpot) {
           history.push(`/spots/${newSpot.id}`)
 

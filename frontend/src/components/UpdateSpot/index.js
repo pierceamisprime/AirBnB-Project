@@ -7,11 +7,11 @@ import { fetchOneSpot } from '../../store/spots';
 const EditSpot = () => {
     const dispatch = useDispatch();
     const { spotId } = useParams();
-    const spotToEdit = useSelector(state => state.spots.allSpots[spotId]);
-    console.log(spotToEdit);
+    const spotToEdit = useSelector(state => state.spots.singleSpot);
+    // console.log(spotToEdit);
 
     useEffect(() => {
-        dispatch(fetchOneSpot(spotId));
+       dispatch(fetchOneSpot(spotId));
     }, [dispatch, spotId])
 
     if (!spotToEdit) return null;

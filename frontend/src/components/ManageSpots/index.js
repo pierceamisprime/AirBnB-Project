@@ -1,32 +1,34 @@
 import { useDispatch, useSelector } from "react-redux"
 import "./ManageSpot.css"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
-import { useEffect, useState } from "react"
-import { fetchSpots } from "../../store/spots"
+import { useEffect } from "react"
+import { fetchSpots, userSpotsThunk } from "../../store/spots"
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
 import DeleteSpotModal from "./DeleteSpotModal"
 
 const ManageSpot = () => {
-    const spotObj = useSelector(state => state.spots.allSpots)
-    const spots = Object.values(spotObj)
-
-    const user = useSelector(state => state.session.user)
-    const currentUserSpot = spots.filter(spot => spot.ownerId === user.id)
-    console.log(currentUserSpot)
-    console.log(user)
-    // console.log(currentUserSpot)
     const dispatch = useDispatch()
     const history = useHistory()
 
+
+    const spotObj = useSelector(state => state.spots.allSpots)
+    // console.log(spotObj)
+    const spots = Object.values(spotObj)
+
+    // const user = useSelector(state => state.session.user)
+    // const currentUserSpot = spots.filter(spot => spot.ownerId === user.id)
+    // console.log(currentUserSpot)
+    // console.log(user)
     useEffect(() => {
-        dispatch(fetchSpots())
+        dispatch(userSpotsThunk())
     }, [dispatch])
+
 
 
     return (
         <div className="manage-spot-page">
             <div className="manage-spot-header">
-                {currentUserSpot.length ?
+                {spots.length ?
                     <h1 className="manage-spot-title">Manage your spots</h1> : <h1 className="manage-spot-title">Add a spot</h1>
                 }
                 <button
@@ -37,7 +39,7 @@ const ManageSpot = () => {
                 </button>
             </div>
             <div className="current-user-spot">
-                {currentUserSpot.length > 0 && currentUserSpot.map(spot =>
+                {spots.length > 0 && spots.map(spot =>
                     <li key={spot.id}>
                          <img className="preview-img" src={spot.previewImage ? spot.previewImage : 'https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg'}></img>
                             <p>{spot.city}, {spot.state}</p>

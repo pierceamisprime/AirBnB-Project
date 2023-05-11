@@ -41,8 +41,3 @@ const SpotIndex = () => {
 };
 
 export default SpotIndex;
-
-{/* <div key={spot.id}
-                        onClick={() => {
-                            history.push(`/spots/${spot.id}`)
-                        }}></div> */}

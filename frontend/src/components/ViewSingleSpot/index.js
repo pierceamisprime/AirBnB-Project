@@ -14,7 +14,7 @@ const ViewSingleSpot = () => {
     const reviewsObj = useSelector(state => state.reviews.spot)
     // const user = useSelector(state => state.session.user)
     const reviews = Object.values(reviewsObj)
-     console.log(spot)
+
 
     useEffect(() => {
         dispatch(fetchOneSpot(spotId))
@@ -42,7 +42,7 @@ const ViewSingleSpot = () => {
         alert('Feature coming soon...')
     }
 
-    console.log(spot.Spotimages?.url)
+
 
 
     return (
