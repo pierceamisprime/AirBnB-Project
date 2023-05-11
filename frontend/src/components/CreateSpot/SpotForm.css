@@ -1,0 +1,19 @@
+#post,
+#put {
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    padding-top: 400px;
+}
+
+.form {
+    padding: 15px 0;
+}
+
+.display-errors {
+    color: red;
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+}

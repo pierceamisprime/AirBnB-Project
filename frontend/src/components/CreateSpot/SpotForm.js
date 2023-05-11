@@ -1,77 +1,102 @@
 //you are creating this form page next!!
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { createNewSpot } from '../../store/spots';
+import { addSpotImageThunk, createNewSpot, editSpotThunk } from '../../store/spots';
 import './SpotForm.css';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 
 const SpotForm = ({ spot, formType }) => {
+    const { spotId } = useParams()
   const history = useHistory();
   const dispatch = useDispatch();
-  const [country, setCountry] = useState(spot?.country);
-  const [address, setAddress] = useState(spot?.address);
-  const [city, setCity] = useState(spot?.city);
-  const [state, setState] = useState(spot?.state);
-  const [latitude, setLatitude] = useState(spot?.latitude);
-  const [longitude, setLongitude] = useState(spot?.longitude);
-  const [description, setDescription] = useState(spot?.description);
-  const [name, setName] = useState(spot?.name);
-  const [price, setPrice] = useState(spot?.price);
-  const [previewImg, setPreviewImg] = useState(spot?.previewImg);
+  const [country, setCountry] = useState('');
+  const [address, setAddress] = useState('')
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [lat, setLatitude] = useState(0);
+  const [lng, setLongitude] = useState(0);
+  const [description, setDescription] = useState('');
+  const [name, setName] = useState('');
+  const [price, setPrice] = useState(0);
+  const [previewImg, setPreviewImg] = useState('');
+  const [image1, setImage1] = useState('');
+  const [image2, setImage2] = useState('');
+  const [image3, setImage3] = useState('');
+  const [image4, setImage4] = useState('');
   const [errors, setErrors] = useState({});
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrors({});
+    setErrors({})
 
-    if (!latitude && !longitude) {
-        spot = {
-            ...spot,
-            country,
-            address,
-            city,
-            state,
-            description,
-            name,
-            price
-        }
-    } else {
-        spot = {
-            ...spot,
-            country,
-            address,
-            city,
-            state,
-            lat: latitude,
-            lng: longitude,
-            description,
-            name,
-            price
-        }
+    let errors = {}
+    if (!country.length) errors.country = "Country is required"
+    if (!address.length) errors.address = "Address is required"
+    if (!city.length) errors.city = "City is required"
+    if (!state.length) errors.state = "State is required"
+    if (description.length < 30) errors.description = "Description needs a minimum of 30 characters"
+    if (!name.length) errors.name = "Name is required"
+    if (price < 1) errors.price = "Price is required"
+    if (!previewImg.length) errors.preview = "Preview image is required"
+    let endings = ['.png', '.jpg', '.jpeg']
+    if (previewImg.length && !endings.includes(previewImg.slice(-5))) errors.preview = "Preview image URL must end in .png, .jpg, or .jpeg"
+    if (image1.length && !endings.includes(image1.slice(-5))) errors.image1 = "Image URL must end in .png, .jpg, or .jpeg"
+    if (image2.length && !endings.includes(image2.slice(-5))) errors.image2 = "Image URL must end in .png, .jpg, or .jpeg"
+    if (image3.length && !endings.includes(image3.slice(-5))) errors.image3 = "Image URL must end in .png, .jpg, or .jpeg"
+    if (image4.length && !endings.includes(image4.slice(-5))) errors.image4 = "Image URL must end in .png, .jpg, or .jpeg"
+    setErrors(errors)
+
+    const spotForThunk = {
+        country,
+        address,
+        city,
+        state,
+        description,
+        name,
+        price,
+        lat,
+        lng
+
     }
 
+    const spotImages = []
+    if (image1) spotImages.push(image1)
+    if (image2) spotImages.push(image2)
+    if (image3) spotImages.push(image3)
+    if (image4) spotImages.push(image4)
+
+    if (Object.values(errors).length) {
+        return null
+    }
     let newSpot;
-    let data;
-    if (formType === 'post') {
-        newSpot = dispatch(createNewSpot(spot))
-          .catch(async (res) => {
-            data = await res.json();
-            if (data && data.errors) {
-              setErrors(data.errors);
-            }
-        });
-    } else if (formType === 'put') {
-        console.log('put spot is coming soon');
-    }
+   if (formType === 'post') {
+      newSpot = await dispatch(createNewSpot(spotForThunk))
+    // if (newSpot.id) {
+
+    //     await dispatch(addSpotImageThunk({ url: previewImg, preview: true }, newSpot.id))
+
+    //     spotImages.forEach(async (image) => {
+    //         await dispatch(addSpotImageThunk({ url: image, preview: false}, newSpot.id))
+    //     })
+    // }
+}
+if (formType === 'put') {
+    newSpot = await dispatch(editSpotThunk(spotForThunk, spotId))
+    // console.log(newSpot)
+}
+
+history.push(`/spots/${newSpot.id}`)
 
   };
 
   return (
     <form id={formType} onSubmit={handleSubmit}>
         <h1>{formType === 'post' ? 'Create a new Spot' : 'Update your Spot'}</h1>
-        <div className='form-input-fields'>
+        <div className='form'>
             <div className="form-where">
                 <h2>Where's your place located?</h2>
                 <p>Guests will only get your exact address once they booked a reservation.</p>
@@ -81,22 +106,20 @@ const SpotForm = ({ spot, formType }) => {
                     type="text"
                     value={country}
                     placeholder='Country'
-                    required
                     onChange={(e) => setCountry(e.target.value)}
                     />
                 </label>
-                {errors.country && <p className="display-errors">{errors.country}</p>}
+                    <p className="display-errors">{errors.country}</p>
                 <label>
                     Street Address
                     <input
                     type='text'
                     value={address}
                     placeholder='Address'
-                    required
                     onChange={(e) => setAddress(e.target.value)}
                     />
                 </label>
-                {errors.address && <p className="display-errors">{errors.address}</p>}
+                <p className="display-errors">{errors.address}</p>
                 <div className='form-city-state'>
                     <label id='city'>
                         City
@@ -104,46 +127,44 @@ const SpotForm = ({ spot, formType }) => {
                         type='text'
                         value={city}
                         placeholder='City'
-                        required
                         onChange={(e) => setCity(e.target.value)}
                         />
                     </label>
-                    <span> , </span>
-                    {errors.city && <p className="display-errors">{errors.city}</p>}
+                    <span></span>
                     <label id='state'>
                         State
                         <input
                         type='text'
                         value={state}
                         placeholder='State'
-                        required
                         onChange={(e) => setState(e.target.value)}
                         />
                     </label>
-                    {errors.state && <p className="display-errors">{errors.state}</p>}
                 </div>
+                   <p className="display-errors">{errors.city}</p>
+                    <p className="display-errors">{errors.state}</p>
                 <div className='form-lat-lng'>
                     <label id='lat'>
                         Latitude
                         <input
                         type='number'
-                        value={latitude}
+                        value={lat}
                         placeholder='Latitude'
                         onChange={(e) => setLatitude(e.target.value)}
                         />
                     </label>
                     <span> , </span>
-                    {errors.lat && <p className="display-errors">{errors.latitude}</p>}
+                    <p className="display-errors">{errors.latitude}</p>
                     <label id='lng'>
                         Longitude
                         <input
                         type='number'
-                        value={longitude}
+                        value={lng}
                         placeholder='Longitude'
                         onChange={(e) => setLongitude(e.target.value)}
                         />
                     </label>
-                    {errors.lng && <p className="display-errors">{errors.longitude}</p>}
+                    <p className="display-errors">{errors.longitude}</p>
                 </div>
             </div>
             <div className='form-description'>
@@ -153,12 +174,11 @@ const SpotForm = ({ spot, formType }) => {
                     <textarea
                     value={description}
                     placeholder='Please write at least 30 characters'
-                    required
                     onChange={(e) => setDescription(e.target.value)}
                     minLength={30}
                     />
                 </label>
-                {errors.description && <p className="display-errors">{errors.description}</p>}
+                <p className="display-errors">{errors.description}</p>
             </div>
             <div className='form-title'>
                 <h2>Create a title for your spot</h2>
@@ -168,12 +188,11 @@ const SpotForm = ({ spot, formType }) => {
                     type='text'
                     value={name}
                     placeholder='Name of your spot'
-                    required
                     maxLength={50}
                     onChange={(e) => setName(e.target.value)}
                     />
                 </label>
-                {errors.name && <p className="display-errors">{errors.name}</p>}
+                <p className="display-errors">{errors.name}</p>
             </div>
             <div className='form-price'>
                 <h2>Set a base price for your spot</h2>
@@ -183,53 +202,64 @@ const SpotForm = ({ spot, formType }) => {
                     type='number'
                     value={price}
                     placeholder='Price per night (USD)'
-                    required
                     onChange={(e) => setPrice(e.target.value)}
                     min={0}
                     />
                 </label>
-                {errors.price && <p className="display-errors">{errors.price}</p>}
+                <p className="display-errors">{errors.price}</p>
             </div>
             <div className='form-images'>
                 <h2>Liven up your spot with photos</h2>
                 <p>Submit a link to at least one photo to publish your spot</p>
                 <label>
                     <input
-                    type='url'
+                    type='text'
                     value={previewImg}
                     placeholder='Preview Image URL'
-                    required
-                    onChange={(e) => setPreviewImg(e.target.value)}
+                     onChange={(e) => setPreviewImg(e.target.value)}
                     />
                 </label>
+                <p className='display-errors'>{errors.preview}</p>
                 <label>
                     <input
-                    type='url'
+                    type='text'
                     placeholder='Image URL'
+                    value={image1}
+                    onChange={(e) => setImage1(e.target.value)}
                     />
                 </label>
+                <p className='display-errors'>{errors.image1}</p>
                 <label>
                     <input
-                    type='url'
+                    type='text'
                     placeholder='Image URL'
+                    value={image2}
+                    onChange={(e) => setImage2(e.target.value)}
                     />
                 </label>
+                <p className='display-errors'>{errors.image2}</p>
                 <label>
                     <input
-                    type='url'
+                    type='text'
                     placeholder='Image URL'
+                    value={image3}
+                    onChange={(e) => setImage3(e.target.value)}
                     />
                 </label>
+                <p className='display-errors'>{errors.image3}</p>
                 <label>
                     <input
-                    type='url'
+                    type='text'
                     placeholder='Image URL'
+                    value={image4}
+                    onChange={(e) => setImage4(e.target.value)}
                     />
                 </label>
+                <p className='display-errors'>{errors.image4}</p>
             </div>
         </div>
         <div className='form-button-house'>
-            <button>Create Spot</button>
+            <button type='submit'>Create Spot</button>
         </div>
     </form>
   );

@@ -6,7 +6,10 @@ import Navigation from "./components/Navigation";
 import { Route } from "react-router-dom";
 import SpotIndex from "./components/Spots";
 import ViewSingleSpot from "./components/ViewSingleSpot";
-import SpotForm from "./components/CreateSpot/SpotForm";
+import CreateSpotForm from "./components/CreateSpot/CreateSpotForm";
+import ManageSpot from "./components/ManageSpots";
+import EditSpot from "./components/UpdateSpot";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -24,7 +27,13 @@ function App() {
           <SpotIndex />
         </Route>
         <Route exact path='/spots/new'>
-          <SpotForm />
+          <CreateSpotForm />
+        </Route>
+        <Route exact path='/spots/current'>
+          <ManageSpot />
+        </Route>
+        <Route exact path='/spots/:spotId/edit'>
+          <EditSpot />
         </Route>
         <Route exact path='/spots/:spotId'>
           <ViewSingleSpot />
