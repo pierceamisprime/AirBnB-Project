@@ -2,25 +2,25 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { addSpotImageThunk, createNewSpot, editSpotThunk } from '../../store/spots';
+import { createNewSpot, editSpotThunk } from '../../store/spots';
 import './SpotForm.css';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 
 const SpotForm = ({ spot, formType }) => {
-    const { spotId } = useParams()
-  const history = useHistory();
-  const dispatch = useDispatch();
-  const [country, setCountry] = useState('');
-  const [address, setAddress] = useState('')
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
-  const [lat, setLatitude] = useState(0);
-  const [lng, setLongitude] = useState(0);
-  const [description, setDescription] = useState('');
-  const [name, setName] = useState('');
-  const [price, setPrice] = useState(0);
+  const { spotId } = useParams()
+  const history = useHistory()
+  const dispatch = useDispatch()
+  const [country, setCountry] = useState(spot?.country || '')
+  const [address, setAddress] = useState(spot?.address || '')
+  const [city, setCity] = useState(spot?.city || '')
+  const [state, setState] = useState(spot?.state || '')
+  const [lat, setLatitude] = useState(1)
+  const [lng, setLongitude] = useState(1)
+  const [description, setDescription] = useState(spot?.description || '')
+  const [name, setName] = useState(spot?.name || '')
+  const [price, setPrice] = useState(spot?.price || '')
   const [previewImg, setPreviewImg] = useState('');
   const [image1, setImage1] = useState('');
   const [image2, setImage2] = useState('');
@@ -216,6 +216,7 @@ const SpotForm = ({ spot, formType }) => {
                 </label>
                 <p className="display-errors">{errors.price}</p>
             </div>
+            {formType !== 'put' &&
             <div className='form-images'>
                 <h2>Liven up your spot with photos</h2>
                 <p>Submit a link to at least one photo to publish your spot</p>
@@ -264,7 +265,7 @@ const SpotForm = ({ spot, formType }) => {
                     />
                 </label>
                 <p className='display-errors'>{errors.image4}</p>
-            </div>
+            </div>}
         </div>
         <div className='form-button-house'>
             <button type='submit'>Create Spot</button>

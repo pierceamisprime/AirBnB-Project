@@ -42,13 +42,17 @@ const ViewSingleSpot = () => {
         alert('Feature coming soon...')
     }
 
+    console.log(spot.Spotimages?.url)
+
 
     return (
+
         <div className="spot-page">
             <div className="spot-name-loco">
             <h1>{spot.name}</h1>
             <h4>{spot.city}, {spot.state}, {spot.country}</h4>
             </div>
+            {spot.Spotimages &&
             <div className="spot-images">
                 <div className="big-img">
                 <img className="preview-img" src={spot.Spotimages[0]?.url}></img>
@@ -59,7 +63,7 @@ const ViewSingleSpot = () => {
                     <img src={spot.Spotimages[3]?.url} />
                     <img src={spot.Spotimages[4]?.url} />
                  </div>
-            </div>
+            </div>}
             <div className="hosted-reserve">
                 <div className="hosted-container">
                 <h3>Hosted by {spot.Owner?.firstName} {spot.Owner?.lastName}</h3>

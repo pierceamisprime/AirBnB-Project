@@ -29,7 +29,7 @@ const SpotIndex = () => {
                 {spots.map(spot => (
                       <Link  key={spot.id} to={`/spots/${spot.id}`} className='spotlink'
                       >
-                        <img className="preview-img" src={spot.previewImage ? spot.previewImage : 'https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg'}></img>
+                        <img className="preview-img" src={spot?.previewImage ? spot.previewImage : 'https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg'}></img>
                             <p>{spot.city}, {spot.state}</p>
                             <span><i className="fa-solid fa-star"></i>{spot.avgRating <= 5 ? spot.avgRating : 'New'}</span>
                             <p>${spot.price} night</p>
