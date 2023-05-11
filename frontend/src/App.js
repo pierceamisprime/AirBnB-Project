@@ -32,11 +32,11 @@ function App() {
         <Route exact path='/spots/current'>
           <ManageSpot />
         </Route>
-        <Route exact path='/spots/:spotId/edit'>
-          <EditSpot />
-        </Route>
         <Route exact path='/spots/:spotId'>
           <ViewSingleSpot />
+        </Route>
+        <Route exact path='/spots/:spotId/edit'>
+          <EditSpot />
         </Route>
 
         </Switch>}

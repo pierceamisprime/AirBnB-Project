@@ -49,6 +49,13 @@ const SpotForm = ({ spot, formType }) => {
     if (!(image4.endsWith('.jpg') || image4.endsWith('.png') || image4.endsWith('.jpeg')) && image4) errors.image4 = "Image URL must end in .png, .jpg, or .jpeg"
     setErrors(errors)
 
+    const spotImages = []
+    if (previewImg) spotImages.push({url: previewImg, preview: true})
+    if (image1) spotImages.push({url: image1, preview: false})
+    if (image2) spotImages.push({url: image2, preview: false})
+    if (image3) spotImages.push({url: image3, preview: false})
+    if (image4) spotImages.push({url: image4, preview: false})
+
     const spotForThunk = {
         country,
         address,
@@ -58,41 +65,38 @@ const SpotForm = ({ spot, formType }) => {
         name,
         price,
         lat,
-        lng
+        lng,
+        // spotImages: spotImages
 
     }
 
-    const spotImages = []
-    if (image1) spotImages.push(image1)
-    if (image2) spotImages.push(image2)
-    if (image3) spotImages.push(image3)
-    if (image4) spotImages.push(image4)
 
     if (Object.values(errors).length) {
         return null
     }
+
+
     let newSpot;
-   if (formType === 'post') {
-      newSpot = await dispatch(createNewSpot(spotForThunk))
-      // if (newSpot.id) {
+    if (formType === 'put') {
+            newSpot = await dispatch(editSpotThunk(spotForThunk, spotId))
+            history.push(`/spots/${newSpot.id}`)
+            // console.log(newSpot)
+        } else {
+      newSpot = await dispatch(createNewSpot(spotForThunk, spotImages))
+      if (newSpot) {
+          history.push(`/spots/${newSpot.id}`)
 
-          //     await dispatch(addSpotImageThunk({ url: previewImg, preview: true }, newSpot.id))
-
-          //     spotImages.forEach(async (image) => {
-              //         await dispatch(addSpotImageThunk({ url: image, preview: false}, newSpot.id))
-              //     })
-              // }
-              if (newSpot) {
-                  history.push(`/spots/${newSpot.id}`)
-
-            }
         }
-        // else if (formType === 'put') {
-            //     newSpot = await dispatch(editSpotThunk(spotForThunk, spotId))
-            //     history.push(`/spots/${newSpot.id}`)
-            //     // console.log(newSpot)
-            // }
+    }
 
+    // if (newSpot.id) {
+
+        //     await dispatch(addSpotImageThunk({ url: previewImg, preview: true }, newSpot.id))
+
+        //     spotImages.forEach(async (image) => {
+            //         await dispatch(addSpotImageThunk({ url: image, preview: false}, newSpot.id))
+            //     })
+            // }
 
 
         };
