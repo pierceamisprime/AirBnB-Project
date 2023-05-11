@@ -30,7 +30,7 @@ module.exports = {
     },
     {
       spotId: 1,
-      url: 'https://imgur.com/a/Wgn57mg',
+      url: 'https://i.imgur.com/r5AIfXN.jpg',
       preview: false
     },
     {
@@ -45,7 +45,7 @@ module.exports = {
     },
     {
       spotId: 2,
-      url: 'https://imgur.com/SZiytF5',
+      url: 'https://i.imgur.com/xKGkjkC.jpg',
       preview: true
     },
     {
@@ -70,7 +70,7 @@ module.exports = {
     },
     {
       spotId: 3,
-      url: 'https://cdn.shopify.com/s/files/1/0552/3383/9311/files/DSC06141.jpg?crop=center&v=1642132027&width=1400',
+      url: 'https://i.imgur.com/TjqvE2s.jpg',
       preview: true
     },
     {
