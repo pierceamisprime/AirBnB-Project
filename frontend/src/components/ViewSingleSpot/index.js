@@ -9,6 +9,7 @@ const ViewSingleSpot = () => {
     const dispatch = useDispatch()
 
     const spot = useSelector(state => state.spots.singleSpot)
+    // console.log(spot)
 
     useEffect(() => {
         dispatch(fetchOneSpot(spotId))

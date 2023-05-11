@@ -75,18 +75,18 @@ export const createNewSpot = (spot) => async dispatch => {
 
 }
 
-export const addSpotImageThunk = (image, id) => async dispatch => {
-    const response = await csrfFetch(`/api/spots/${id}/images`, {
-        method: 'POST',
-        body: JSON.stringify(image)
-    })
-    if (response.ok) {
-        const newImage = await response.json()
-        dispatch(addSpotImage(newImage))
-        return newImage
-    }
+// export const addSpotImageThunk = (image, id) => async dispatch => {
+//     const response = await csrfFetch(`/api/spots/${id}/images`, {
+//         method: 'POST',
+//         body: JSON.stringify(image)
+//     })
+//     if (response.ok) {
+//         const newImage = await response.json()
+//         dispatch(addSpotImage(newImage))
+//         return newImage
+//     }
 
-}
+// }
 
 export const deleteSpotThunk = (spotId) => async dispatch => {
     const response = await csrfFetch(`/api/spots/${spotId}`, {
@@ -112,13 +112,13 @@ export const editSpotThunk = (spot, spotId) => async dispatch => {
 }
 
 
-const initialState = { allSpots: null, singleSpot: null, currentUserSpots: null}
+const initialState = { allSpots: null, singleSpot: null }
 
 const spotsReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case LOAD_SPOTS:
-            newState = { ...state, allSpots: { ...state.allSpots }, singleSpot: null, currentUserSpots: null}
+            newState = { ...state, allSpots: { ...state.allSpots }, singleSpot: { ...state.singleSpot}}
             const spots = action.spots.Spots
             spots.forEach(spot => {
                 newState.allSpots[spot.id] = spot
@@ -126,13 +126,15 @@ const spotsReducer = (state = initialState, action) => {
             return newState
 
         case VIEW_SPOT:
-            newState = {...state, allSpots: {...state.allSpots}, singleSpot: {}};
+            newState = {...state, singleSpot: {}};
             newState.singleSpot = action.spot;
             return newState;
 
         case CREATE_SPOT:
-            newState = {...state, allSpots: {...state.allSpots}, singleSpot: {}};
-            newState.allSpots[action.spot.id] = action.spot;
+            newState = {...state, allSpots: {...state.allSpots}};
+            const spot = action.spot
+            newState.singleSpot = spot
+            newState.allSpots[spot.id] = spot
             return newState;
 
         case DELETE_SPOT:
