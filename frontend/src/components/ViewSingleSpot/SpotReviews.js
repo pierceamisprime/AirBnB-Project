@@ -10,10 +10,10 @@ import { getReviewsThunk } from "../../store/reviews"
 const SpotReviews = ({ reviews, spotId }) => {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
-    const reviewObj = useSelector(state => state.reviews.spot)
-    const reviewsArr = Object.values(reviewObj)
+    // const reviewObj = useSelector(state => state.reviews.spot)
+    // console.log(reviewObj)
+    // const reviewsArr = Object.values(reviewObj)
     const spot = useSelector(state => state.spots.singleSpot)
-
 
     useEffect(() => {
         dispatch(fetchOneSpot(spotId))
@@ -23,9 +23,6 @@ const SpotReviews = ({ reviews, spotId }) => {
         dispatch(getReviewsThunk(spotId))
     }, [dispatch, spotId])
 
-    // console.log("this is user", user)
-    // console.log("this is spot", spot.ownerId)
-    // console.log("this is review", reviews)
 
     if (!spot || !spotId || !user) return null
 
@@ -45,10 +42,11 @@ const SpotReviews = ({ reviews, spotId }) => {
     }
 
     const newReviews = reviews.toReversed()
+    console.log('Reviews:', newReviews)
 
     return (
         <div>
-            {(user?.id !== spot.ownerId) && !(reviewsArr.find(review => review.userId === user.id)) &&
+            {(user?.id !== spot.ownerId) && !(reviews.find(review => review.userId === user.id)) &&
                 <div>
                     <OpenModalButton
                         buttonText="Post Your Review"
@@ -63,7 +61,7 @@ const SpotReviews = ({ reviews, spotId }) => {
                     {newReviews.map(review => {
                         return !review.User ? null :
                             (
-                                <div>
+                                <div key={review.id}>
                                     <div className="review-detail">
                                         <h3>{review.User.firstName} {review.User.lastName}</h3>
                                         <p className="review-date">{months[review.createdAt.slice(5, 7)]} {review.createdAt.slice(0, 4)}</p>

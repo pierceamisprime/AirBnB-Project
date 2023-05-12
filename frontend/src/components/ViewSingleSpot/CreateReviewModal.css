@@ -5,7 +5,32 @@
     height: 300px;
 }
 
-.submit-review-button-modal {
+
+.review-text {
+    resize: none;
+    padding: 5px;
+    width: 350px;
+    height: 100px;
+    background-color: rgb(246, 241, 241);
+}
+
+.not-rated {
+    color: rgb(253, 202, 210);
+}
+
+.medium-big-star {
+    margin-top: 10px;
+    font-size: 30px;
+}
+.rated {
+    color: #ff5A5F;
+}
+
+.rating-input {
+    display: flex;
+}
+
+.submit-review-button {
     color: white;
     background-color: #ff5A5F;
     width: 150px;
@@ -20,29 +45,4 @@
 .submit-review-button-modal:hover {
     box-shadow: 2px 2px 2px black;
     transition: ease-in .15s;
-}
-
-.review-modal-text {
-    resize: none;
-    padding: 5px;
-    width: 350px;
-    height: 100px;
-    background-color: rgb(246, 241, 241);
-}
-
-.empty {
-    color: rgb(253, 202, 210);
-}
-
-.filled {
-    color: #ff5A5F;
-}
-
-.star-rating-input {
-    display: flex;
-}
-
-.medium-big-star {
-    margin-top: 10px;
-    font-size: 30px;
 }
