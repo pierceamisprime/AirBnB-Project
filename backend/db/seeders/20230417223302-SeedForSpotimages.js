@@ -45,7 +45,7 @@ module.exports = {
     },
     {
       spotId: 2,
-      url: 'https://i.imgur.com/xKGkjkC.jpg',
+      url: "https://www.24hourfitness.com/images/clubs/club_slideshows/411/album1/large/image1.jpg",
       preview: true
     },
     {
