@@ -136,7 +136,6 @@ router.get('/', validateGetSpotsQuery, async (req, res) => {
         })
         spot.previewImage = 'No images provided'
         spot.Spotimages.forEach(image => {
-            console.log('-----------------------------------------------------------', image)
             if (image.preview === true) {
                 spot.previewImage = image.url
             }
