@@ -3,6 +3,7 @@ import { useModal } from "../../context/Modal"
 import { useDispatch } from "react-redux"
 import "./CreateReviewModal.css"
 import { createReviewThunk, getReviewsThunk } from "../../store/reviews"
+import { fetchOneSpot } from "../../store/spots"
 
 
 const CreateReviewModal = ({ spotId }) => {
@@ -22,10 +23,20 @@ const CreateReviewModal = ({ spotId }) => {
             stars
         }
 
-         dispatch(createReviewThunk(reviewData))
-         closeModal()
+        return dispatch(createReviewThunk(reviewData))
+        .then(() => dispatch(fetchOneSpot(spotId)))
+        .then(() => dispatch(getReviewsThunk(spotId)))
+        .then(closeModal)
 
     }
+
+    // const handleSubmit = (e) => {
+    //     //need to handle errors
+    //     e.preventDefault();
+    //     return dispatch(createReviewThunk({ review, stars }, spot.id, user))
+    //       .then(() => dispatch(fetchSpot(spot.id)))
+    //       .then(closeModal)
+    //   }
 
     return (
         <form onSubmit={handleClick}>

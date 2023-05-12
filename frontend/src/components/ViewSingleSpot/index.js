@@ -36,7 +36,7 @@ const ViewSingleSpot = () => {
         alert('Feature coming soon...')
     }
 
-
+    const Spotimages = spot?.Spotimages?.sort((a, b) => a.id - b.id)
 
 
     return (
@@ -49,13 +49,13 @@ const ViewSingleSpot = () => {
             {spot.Spotimages &&
                 <div className="spot-images">
                     <div className="big-img">
-                        <img className="preview-img-single" src={spot.Spotimages[0]?.url}></img>
+                        <img className="preview-img-single" src={Spotimages[0]?.url}></img>
                     </div>
                     <div className="small-images">
-                        <img src={spot.Spotimages[1]?.url} />
-                        <img src={spot.Spotimages[2]?.url} />
-                        <img src={spot.Spotimages[3]?.url} />
-                        <img src={spot.Spotimages[4]?.url} />
+                        <img src={Spotimages[1]?.url} />
+                        <img src={Spotimages[2]?.url} />
+                        <img src={Spotimages[3]?.url} />
+                        <img src={Spotimages[4]?.url} />
                     </div>
                 </div>}
             <div className="hosted-reserve">
