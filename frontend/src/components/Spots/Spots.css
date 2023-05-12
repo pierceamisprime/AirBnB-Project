@@ -12,6 +12,7 @@
     flex-flow: column;
     justify-content: center;
     width: 1024;
+    margin: 35px;
 }
 
 .spots-index {
@@ -47,19 +48,17 @@
     color: black;
 }
 
-.rating {
+.landing-rating {
     display: flex;
     justify-content: flex-end;
     padding-top: 17px;
 }
 .spot-info {
     display: flex;
-    gap: 80px;
+    gap: 145px;
 }
 
-.price {
-    display: flex;
-    justify-content: flex-start;
+.landing-price {
    margin-top: 0px;
    font-weight: bold;
 

@@ -32,6 +32,9 @@ img {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 10px;
+    border-bottom: 1.5px solid black;
+    padding-top: 10px;
+    padding-bottom: 10px;
 
 }
 
@@ -40,8 +43,8 @@ img {
     align-content: center;
     gap: 10px;
     border: 2.5px solid black;
-    border-radius: 7%;
-    margin: 5px 0px 10px 5px;
+    border-radius: 25px;
+    /* margin: 5px 0px 10px 5px; */
 
 }
 
@@ -49,13 +52,14 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    ;
+    padding: 5px;
 }
 
 .button-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 5px;
 
 }
 
@@ -65,11 +69,13 @@ img {
     background-color: #FF5A5F;
     color: white;
     box-shadow: 2px 2px 2px black;
+
 }
 
 .price-single {
-    font-size: larger;
-    padding-left: 60px;
+    font-size: 20px;
+    padding-left: 45px;
+    font-weight: bold;
 }
 
 .star-single {
@@ -77,5 +83,5 @@ img {
 }
 
 .reviews-single {
-    padding-right: 60px;
+    padding-right: 45px;
 }

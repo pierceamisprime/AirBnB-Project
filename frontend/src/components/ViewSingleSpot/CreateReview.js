@@ -1,22 +1,17 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useModal } from "../../context/Modal"
 import { useDispatch } from "react-redux"
 import "./CreateReviewModal.css"
-import { fetchOneSpot } from "../../store/spots"
-import { createReviewThunk } from "../../store/reviews"
+import { createReviewThunk, getReviewsThunk } from "../../store/reviews"
 
 
 const CreateReviewModal = ({ spotId }) => {
 
+    const dispatch = useDispatch()
+    const { closeModal } = useModal()
     const [review, setReview] = useState("")
     const [stars, setStars] = useState("")
-
-    const { closeModal } = useModal()
-    const [activeRating, setActiveRating] = useState(1)
-
-    const dispatch = useDispatch()
-
-
+    const [rating, setRating] = useState(1)
 
     const handleClick = (e) => {
         e.preventDefault()
@@ -27,9 +22,8 @@ const CreateReviewModal = ({ spotId }) => {
             stars
         }
 
-
-        dispatch(createReviewThunk(reviewData))
-        closeModal()
+         dispatch(createReviewThunk(reviewData))
+         closeModal()
 
     }
 
@@ -38,52 +32,52 @@ const CreateReviewModal = ({ spotId }) => {
             <div className="create-review-modal">
                 <h2>How was your stay?</h2>
                 <textarea
-                    className="review-modal-text"
+                    className="review-text"
                     placeholder="Leave your review here..."
                     value={review}
                     onChange={(e) => setReview(e.target.value)}
-                    rows={8}
+                    rows={10}
                     cols={30}
                 />
 
-                <div className="star-rating-input">
+                <div className="rating-input">
                     <div
-                        className={activeRating >= 1 ? "filled" : "empty"}
-                        onMouseEnter={() => setActiveRating(1)}
+                        className={rating >= 1 ? "rated" : "not-rated"}
+                        onMouseEnter={() => setRating(1)}
                         onClick={() => setStars(1)}
                     >
                         <i className="fa-solid fa-star medium-big-star clickable" ></i>
                     </div>
                     <div
-                        className={activeRating >= 2 ? "filled" : "empty"}
-                        onMouseEnter={() => setActiveRating(2)}
+                        className={rating >= 2 ? "rated" : "not-rated"}
+                        onMouseEnter={() => setRating(2)}
                         onClick={() => setStars(2)}
                     >
                         <i className="fa-solid fa-star medium-big-star clickable" ></i>
                     </div>
                     <div
-                        className={activeRating >= 3 ? "filled" : "empty"}
-                        onMouseEnter={() => setActiveRating(3)}
+                        className={rating >= 3 ? "rated" : "not-rated"}
+                        onMouseEnter={() => setRating(3)}
                         onClick={() => setStars(3)}
                     >
                         <i className="fa-solid fa-star medium-big-star clickable" ></i>
                     </div>
                     <div
-                        className={activeRating >= 4 ? "filled" : "empty"}
-                        onMouseEnter={() => setActiveRating(4)}
+                        className={rating >= 4 ? "rated" : "not-rated"}
+                        onMouseEnter={() => setRating(4)}
                         onClick={() => setStars(4)}
                     >
                         <i className="fa-solid fa-star medium-big-star clickable" ></i>
                     </div>
                     <div
-                        className={activeRating >= 5 ? "filled" : "empty"}
-                        onMouseEnter={() => setActiveRating(5)}
+                        className={rating >= 5 ? "rated" : "not-rated"}
+                        onMouseEnter={() => setRating(5)}
                         onClick={() => setStars(5)}
                     >
                         <i className="fa-solid fa-star medium-big-star clickable" ></i>
                     </div>
                 </div>
-                <button type="submit" className="submit-review-button-modal" disabled={(review.length < 10) || !stars}>Submit Your Review</button>
+                <button type="submit" className="submit-review-button" disabled={(review.length < 10) || !stars}>Submit Your Review</button>
             </div>
         </form>
     )
