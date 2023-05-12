@@ -4,8 +4,9 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid #CCCCCC;
-    padding: 10px;
+    padding: 20px;
     font-size: 14pt;
+
 }
 
 .hidden {
@@ -30,14 +31,14 @@ li {
 }
 
 .profile-button {
-    height: 50px;
+    height: 40px;
     border-radius: 20px;
-    width: 100px;
+    width: 60px;
 
 }
 
 .create-spot {
-    padding-left: 450px;
+    padding-left: 600px;
 }
 
 .home {

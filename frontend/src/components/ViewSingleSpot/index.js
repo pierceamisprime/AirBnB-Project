@@ -49,13 +49,13 @@ const ViewSingleSpot = () => {
 
         <div className="spot-page">
             <div className="spot-name-loco">
-            <h1>{spot.name}</h1>
+            <h1 className="spot-name">{spot.name}</h1>
             <h4>{spot.city}, {spot.state}, {spot.country}</h4>
             </div>
             {spot.Spotimages &&
             <div className="spot-images">
                 <div className="big-img">
-                <img className="preview-img" src={spot.Spotimages[0]?.url}></img>
+                <img className="preview-img-single" src={spot.Spotimages[0]?.url}></img>
                 </div>
                  <div className="small-images">
                  <img src={spot.Spotimages[1]?.url} />
@@ -70,12 +70,17 @@ const ViewSingleSpot = () => {
                 <p>{spot.description}</p>
                 </div>
                 <div className="reserve-container">
-                    <span>${spot.price} /night</span>
-                    <span><i className="fa-solid fa-star"></i>{spot.avgStarRating <= 5 ? spot.avgStarRating : 'New'}</span>
-                    <span>{spot.numReviews} Reviews</span>
-                    <div className="button-container">
-                        <button onClick={handleReserveBtn}>Reserve</button>
+                    <div className="reserve-info">
+                    <span className="price-single">${spot.price} /night</span>
+                    <span className="star-single"><i className="fa-solid fa-star"></i>{spot.avgStarRating <= 5 ? spot.avgStarRating : 'New'}</span>
+                    <span className="reviews-single">{spot.numReviews} Reviews</span>
+
                     </div>
+
+                    <div className="button-container">
+                        <button className="reserve-button" onClick={handleReserveBtn}>Reserve</button>
+                    </div>
+                        </div>
                     <div className="spot-reviews-details">
                                 {reviews.length ?
                                     <>
@@ -87,7 +92,6 @@ const ViewSingleSpot = () => {
                                         <SpotReviews reviews={reviews} new={true} spotId={spotId} />
                                     </>
                                 }
-                            </div>
                 </div>
             </div>
         </div>
