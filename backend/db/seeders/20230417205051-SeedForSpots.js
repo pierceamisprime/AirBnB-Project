@@ -138,6 +138,30 @@ module.exports = {
       description: "If you’re into meditation and relaxation, this spa and gym is for you. Add a jolt to your fitness routine with a three or six-week private training program and you’ll get two one-hour sessions with a trainer, as well as a fitness assesment. Everyone’s got to start somewhere. Post-class, grab a smoothie (or wine and beer if that’s more your speed post-workout), then pop in the steam room!",
       price: 150.25
     },
+    {
+      ownerId: 2,
+      address: '524 N Lamar Blvd Suite 300',
+      city: 'Boise',
+      state: 'Idaho',
+      country: 'United States',
+      lat: 503.4716626,
+      lng: 435.8554334,
+      name: 'Golds Gym',
+      description: "Gold’s Gym Waco gives you access to everything you need reach your fitness goals: weight and strength training areas, a wide selection of free weights, cardio equipment, resistance machines, group exercise classes, GOLD'S STUDIO® and Group Cycle offerings – plus a team of certified Personal Trainers ready to support and motivate you to become the strongest version of yourself.",
+      price: 300.50
+    },
+    {
+      ownerId: 3,
+      address: '524 N Lamar Blvd Suite 300',
+      city: 'Dallas',
+      state: 'Texas',
+      country: 'United States',
+      lat: 503.5726626,
+      lng: 435.1554334,
+      name: 'Crunch Fitness',
+      description: "Some may call it a tagline, but for us, it’s a way of life. It’s our Monday-thru-every-day mantra. An unfiltered philosophy that drives us to create a community and a gym for all. No judgments means room for everyone, regardless of shape, size, age, race, gender or fitness level. No matter your workout of choice, we want you to feel good while reaching your goals.",
+      price: 175.50
+    },
    ])
 
   },

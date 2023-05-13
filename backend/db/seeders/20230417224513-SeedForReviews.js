@@ -23,25 +23,25 @@ module.exports = {
     spotId: 1,
     userId: 2,
     review: 'Lovely place, had a great time!',
-    stars: 5
+    stars: 5.0
    },
     {
     spotId: 2,
     userId: 1,
     review: 'Great place for family!!',
-    stars: 4
+    stars: 4.0
    },
     {
     spotId: 3,
     userId: 2,
     review: 'smaller than expected',
-    stars: 2
+    stars: 2.0
    },
     {
     spotId: 1,
     userId: 3,
     review: 'Really good area with lots of activities, loved it!',
-    stars: 5
+    stars: 5.0
    },
   ])
 
