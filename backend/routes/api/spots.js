@@ -134,7 +134,7 @@ router.get('/', validateGetSpotsQuery, async (req, res) => {
                 spot.avgRating = 'No reviews yet!'
             }
         })
-        spot.previewImage = 'No images provided'
+        // spot.previewImage = 'No images provided'
         spot.Spotimages.forEach(image => {
             if (image.preview === true) {
                 spot.previewImage = image.url
