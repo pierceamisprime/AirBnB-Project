@@ -30,13 +30,6 @@ li {
     list-style-type: none;
 }
 
-.profile-button {
-    height: 40px;
-    border-radius: 20px;
-    width: 60px;
-
-}
-
 .create-spot {
     padding-left: 600px;
 }

@@ -35,21 +35,15 @@ function LoginFormModal() {
 
     const disabledFuncReturn = disabled(credential, password);
 
-
-    const buttonClassFunc = (disabledFuncReturn) => {
-      let buttonClass;
-      if (disabledFuncReturn) buttonClass = 'nice-button hover-off';
-      else buttonClass = 'nice-button'
-      return buttonClass;
-    }
-
     return (
         <div className="login-container">
             <h1>Log In</h1>
-            <form onSubmit={handleSubmit}>
+            <form className="login-form" onSubmit={handleSubmit}>
                 <label className="label">
-                    Username or Email
+
                     <input
+                     className="user-form-input"
+                    placeholder="Username or Email"
                         type="text"
                         value={credential}
                         onChange={(e) => setCredential(e.target.value)}
@@ -57,8 +51,10 @@ function LoginFormModal() {
                     />
                 </label>
                 <label className="label">
-                    Password
+
                     <input
+                     className="user-form-input"
+                    placeholder="Password"
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
@@ -68,7 +64,7 @@ function LoginFormModal() {
                 {errors.credential && (
                     <p className="display-errors">{errors.credential}</p>
                 )}
-                <button type="submit" disabled={disabledFuncReturn} className={buttonClassFunc}>Log In</button>
+                <button type="submit" disabled={disabledFuncReturn} className='login-btn'>Log In</button>
             </form>
                 <p className="demo-user" onClick={demoUser}>Log In as Demo User</p>
         </div>

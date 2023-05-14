@@ -1,8 +1,8 @@
-h1 {
+/* h1 {
     display: flex;
     justify-content: center;
-}
-form {
+} */
+/* .form {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,7 +12,7 @@ form {
 .login-container {
     border-radius: 20px;
     box-shadow: 0 3px 7px #010466;
-    background-color: #1c24ff08;
+    background-color: white;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -29,4 +29,54 @@ form {
 .demo-user:hover {
     cursor: pointer;
     font-weight: bold;
+} */
+
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 250px;
+
+
 }
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+
+}
+
+.login-btn {
+    background-color: #FF5A5F;
+    color: white;
+    width: 200px;
+    height: 40px;
+    border: 1px solid gray;
+    border-radius: 5px;
+
+}
+.login-btn:hover {
+    box-shadow: 1px 1px 5px black;
+}
+
+.user-form-input {
+    padding: 5px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    width: 200px;
+  }
+
+  .demo-user {
+    color: purple;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-bottom: 50px;
+  }
+
+  .demo-user:hover {
+    font-weight: bold;
+  }

@@ -47,11 +47,11 @@ const CreateReviewModal = ({ spotId }) => {
                     placeholder="Leave your review here..."
                     value={review}
                     onChange={(e) => setReview(e.target.value)}
-                    rows={10}
-                    cols={30}
+                    rows={5}
+
                 />
 
-                <div className="rating-input">
+                <div className="rating">
                     <div
                         className={rating >= 1 ? "rated" : "not-rated"}
                         onMouseEnter={() => setRating(1)}

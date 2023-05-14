@@ -3,15 +3,17 @@
     align-items: center;
     flex-flow: column;
     height: 300px;
+    width: 400px;
+    border-radius: 25px;
 }
 
 
 .review-text {
-    resize: none;
     padding: 5px;
     width: 350px;
     height: 100px;
-    background-color: rgb(246, 241, 241);
+    resize: none;
+
 }
 
 .not-rated {
@@ -26,7 +28,7 @@
     color: #ff5A5F;
 }
 
-.rating-input {
+.rating {
     display: flex;
 }
 
@@ -36,7 +38,7 @@
     width: 150px;
     margin-top: 10px;
     padding: 0 0 3px 10px;
-    height: 21px;
+    height: 40px;
     border-radius: 10px;
     box-shadow: 1px 1px 2px black;
     cursor: pointer;

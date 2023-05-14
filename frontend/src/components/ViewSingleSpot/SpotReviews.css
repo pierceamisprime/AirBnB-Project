@@ -1,0 +1,27 @@
+.review-name {
+    font-size: larger;
+    font-weight: bold;
+    margin: 3px;
+}
+
+.review-date {
+    font-size: medium;
+    color: gray;
+    margin: 2px;
+}
+
+.review-review {
+    font-size: medium;
+    margin: 2px;
+}
+
+.review-detail {
+    padding: 10px;
+}
+
+.create-review-btn *{
+    background-color: #FF5A5F;
+    color: white;
+    border-color: #FF5A5F;
+    height: 30px;
+}

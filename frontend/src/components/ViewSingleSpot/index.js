@@ -52,10 +52,10 @@ const ViewSingleSpot = () => {
                         <img className="preview-img-single" src={Spotimages[0]?.url}></img>
                     </div>
                     <div className="small-images">
-                        <img src={Spotimages[1]?.url} />
-                        <img src={Spotimages[2]?.url} />
-                        <img src={Spotimages[3]?.url} />
-                        <img src={Spotimages[4]?.url} />
+                        <img className="small-images-size" src={Spotimages[1]?.url} />
+                        <img className="small-images-size" src={Spotimages[2]?.url} />
+                        <img className="small-images-size" src={Spotimages[3]?.url} />
+                        <img className="small-images-size" src={Spotimages[4]?.url} />
                     </div>
                 </div>}
             <div className="hosted-reserve">
@@ -65,9 +65,11 @@ const ViewSingleSpot = () => {
                 </div>
                 <div className="reserve-container">
                     <div className="reserve-info">
-                        <span className="price-single">${spot.price} /night</span>
-                        <span className="star-single"><i className="fa-solid fa-star"></i>{spot.avgStarRating <= 5 ? `${spot.avgStarRating}` : 'New'}</span>
-                        <span className="reviews-single">#{spot.numReviews} Reviews</span>
+                        <span className="price-single">${spot.price}     night</span>
+                        <div className="reserve-star-reviews">
+                        <span className="star-single"><i className="fa-solid fa-star"></i>{spot.avgStarRating <= 5 ? parseFloat(spot.avgStarRating).toFixed(1) : 'New'}</span><span>•</span>
+                        <span className="reviews-single">#{spot.numReviews} {spot.numReviews > 1 ? "reviews" : "review"}</span>
+                        </div>
 
                     </div>
 
@@ -79,7 +81,7 @@ const ViewSingleSpot = () => {
             <div className="spot-reviews-details">
                 {reviews.length ?
                     <>
-                        <h3><i className="fa-solid fa-star"></i> {spot.avgStarRating} · {spot.numReviews} {spot.numReviews > 1 ? "reviews" : "review"}</h3>
+                        <h3><i className="fa-solid fa-star"></i> {parseFloat(spot.avgStarRating).toFixed(1)} • {spot.numReviews} {spot.numReviews > 1 ? "reviews" : "review"}</h3>
                         <SpotReviews reviews={reviews} spotId={spotId} />
                     </>
                     : <>

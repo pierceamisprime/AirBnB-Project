@@ -1,17 +1,20 @@
+#root {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
  .preview-img {
-    width: 300px;
-    height: 250px;
+    width: 100%;
+    height: 70%;
     border-radius: 10px;
     cursor: pointer;
+    object-fit: cover;
 }
 
 
 
 .spots-body {
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    width: 1024;
     margin: 35px;
 }
 
@@ -19,7 +22,8 @@
 
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    gap: 25px;
+
 
 }
 
@@ -55,7 +59,7 @@
 }
 .spot-info {
     display: flex;
-    gap: 145px;
+    justify-content: space-between;
 }
 
 .landing-price {

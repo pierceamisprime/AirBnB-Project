@@ -112,8 +112,8 @@ const SpotForm = ({ spot, formType }) => {
 
   return (
     <form id={formType} onSubmit={handleSubmit}>
+        <div className='create-update-form'>
         <h1>{formType === 'post' ? 'Create a new Spot' : 'Update your Spot'}</h1>
-        <div className='form'>
             <div className="form-where">
                 <h2>Where's your place located?</h2>
                 <p>Guests will only get your exact address once they booked a reservation.</p>
@@ -147,7 +147,6 @@ const SpotForm = ({ spot, formType }) => {
                         onChange={(e) => setCity(e.target.value)}
                         />
                     </label>
-                    <span></span>
                     <label id='state'>
                         State
                         <input
@@ -170,7 +169,6 @@ const SpotForm = ({ spot, formType }) => {
                         onChange={(e) => setLatitude(e.target.value)}
                         />
                     </label>
-                    <span> , </span>
                     <p className="display-errors">{errors.latitude}</p>
                     <label id='lng'>
                         Longitude
@@ -215,10 +213,10 @@ const SpotForm = ({ spot, formType }) => {
                 <h2>Set a base price for your spot</h2>
                 <p>Competitive pricing can help your listing stand out and rank higher in search results.</p>
                 <label>
-                    $ <input
+                     <input
                     type='number'
                     value={price}
-                    placeholder='Price per night (USD)'
+                    placeholder='$ Price per night (USD)'
                     onChange={(e) => setPrice(e.target.value)}
                     min={0}
                     />
@@ -275,9 +273,9 @@ const SpotForm = ({ spot, formType }) => {
                 </label>
                 <p className='display-errors'>{errors.image4}</p>
             </div>}
+        <div className='form-button-container'>
+            <button className='create-btn' type='submit'>Create Spot</button>
         </div>
-        <div className='form-button-house'>
-            <button type='submit'>Create Spot</button>
         </div>
     </form>
   );

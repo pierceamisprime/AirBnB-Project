@@ -1,19 +1,98 @@
 #post,
 #put {
-    color: black;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    justify-items: center;
-    padding-top: 400px;
 }
 
-.form {
-    padding: 15px 0;
-}
 
 .display-errors {
     color: red;
     font-size: 12px;
     font-family: 'Montserrat', sans-serif;
+}
+
+.create-update-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px 250px
+}
+.create-update-form > div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.create-update-form > div > label {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-where {
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+}
+.form-city-state {
+    display: flex;
+    gap: 5px;
+
+}
+
+.form-city-state > label {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-lat-lng {
+    display: flex;
+    gap: 5px;
+}
+
+.form-lat-lng > label {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-description {
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+
+}
+
+.form-title {
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+}
+
+.form-price {
+    display: flex;
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+}
+
+.form-price > label > input {
+    display: flex;
+}
+
+.form-images {
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+}
+
+.create-btn {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    align-items: center;
+    background-color: #FF5A5F;
+    color: white;
+}
+
+.form-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
 }

@@ -1,5 +1,5 @@
 .spot-page {
-    margin: 30px;
+    margin: 35px;
 }
 .spot-name {
     display: flex;
@@ -9,31 +9,32 @@
 .spot-images {
     display: grid;
     grid-template-columns: repeat(2, 50%) ;
-    gap: 10px;
+    gap: 8px;
 
 }
 
-img {
-    height: 180px;
-    width: 315px;
+.small-images-size {
+    height: 100%;
+    width: 100%;
 }
 
 .preview-img-single {
-    height: 370px;
-    width: 650px;
+    height: 100%;
+    width: 100%;
 }
 
 .small-images {
     display: grid;
     grid-template-columns: repeat(2, 50%);
+    gap: 8px;
 }
 
 .hosted-reserve {
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 10px;
+    grid-template-columns: 3fr 2fr;
+    gap: 30px;
     border-bottom: 1.5px solid black;
-    padding-top: 10px;
+    padding-top: 20px;
     padding-bottom: 10px;
 
 }
@@ -41,10 +42,10 @@ img {
 .reserve-container {
     display: grid;
     align-content: center;
-    gap: 10px;
-    border: 2.5px solid black;
+    /* gap: 10px; */
+    border: 1.5px solid black;
     border-radius: 25px;
-    /* margin: 5px 0px 10px 5px; */
+    height: 150px;
 
 }
 
@@ -52,14 +53,17 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .button-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 5px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 10px;
 
 }
 
@@ -68,20 +72,19 @@ img {
     height: 50px;
     background-color: #FF5A5F;
     color: white;
-    box-shadow: 2px 2px 2px black;
+    box-shadow: 4px 4px 10px rgb(24, 24, 24);
+    font-weight: bold;
 
+}
+
+.reserve-star-reviews {
+    display: flex;
+    gap: 8px;
+    font-weight: bold;
+    font-size: 15px;
 }
 
 .price-single {
-    font-size: 20px;
-    padding-left: 45px;
     font-weight: bold;
-}
-
-.star-single {
-    padding-left: 80px;
-}
-
-.reviews-single {
-    padding-right: 45px;
+    font-size: 20px;
 }

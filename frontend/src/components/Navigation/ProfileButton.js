@@ -5,6 +5,7 @@ import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import './ProfileButton.css'
 
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
@@ -61,11 +62,11 @@ function ProfileButton({ user }) {
 
 
                         <li>
-                            <button onClick={logout}>Log Out</button>
+                            <button className="logout-button" onClick={logout}>Log Out</button>
                         </li>
                     </>
                 ) : (
-                    <>
+                    <div className="log-in-sign-up">
                         <OpenModalMenuItem
                             itemText="Log In"
                             onItemClick={closeMenu}
@@ -76,7 +77,7 @@ function ProfileButton({ user }) {
                             onItemClick={closeMenu}
                             modalComponent={<SignupFormModal />}
                         />
-                    </>
+                    </div>
                 )}
             </ul>
         </>
