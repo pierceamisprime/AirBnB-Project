@@ -115,7 +115,7 @@ module.exports = {
       price: 195.00
     },
     {
-      ownerId: 3,
+      ownerId: 5,
       address: '2629 E Rose Garden Ln',
       city: 'Phoenix',
       state: 'Arizona',
@@ -127,7 +127,7 @@ module.exports = {
       price: 900.00
     },
     {
-      ownerId: 1,
+      ownerId: 4,
       address: '524 N Lamar Blvd Suite 300',
       city: 'Austin',
       state: 'Texas',
