@@ -7,15 +7,21 @@
     align-items: center;
     justify-content: space-between;
     width: 250px;
+  border: 1px solid black;
+  border-radius: 25px;
+
 
 
 }
+
+
 
 .login-form {
     display: flex;
     flex-direction: column;
     gap: 10px;
     align-items: center;
+
 
 }
 

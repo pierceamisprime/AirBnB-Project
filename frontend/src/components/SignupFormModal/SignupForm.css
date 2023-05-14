@@ -1,3 +1,9 @@
+#modal-content {
+
+    border-radius: 25px;
+
+}
+
 .sign-up {
     display: flex;
     flex-direction: column;
@@ -5,6 +11,7 @@
     align-items: center;
     gap: 20px;
 }
+
 
 .sign-up-btn {
     background-color: #FF5A5F;
