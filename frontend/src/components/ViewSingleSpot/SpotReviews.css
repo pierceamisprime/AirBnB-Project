@@ -25,3 +25,11 @@
     border-color: #FF5A5F;
     height: 30px;
 }
+
+.delete-review-btn * {
+    background-color: #FF5A5F;
+    color: white;
+    border-color: #FF5A5F;
+    height: 30px;
+
+}

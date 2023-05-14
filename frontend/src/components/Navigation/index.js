@@ -13,7 +13,7 @@ function Navigation({ isLoaded }) {
                 <NavLink className='link-home' exact to="/"><i class="fa-solid fa-dumbbell fa-2xl" style={{color: "#FF5A5F",}} />   fitbnb</NavLink>
             </li>
             <li className='create-spot'>
-                <NavLink className= 'link-new' to='/spots/new'>Create a New Spot</NavLink>
+            {sessionUser ?  <NavLink className= 'link-new' to='/spots/new'>Create a New Spot</NavLink> : null}
             </li>
             {isLoaded && (
                 <li>

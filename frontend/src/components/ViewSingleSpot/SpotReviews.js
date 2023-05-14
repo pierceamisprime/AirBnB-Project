@@ -68,7 +68,7 @@ const SpotReviews = ({ reviews, spotId }) => {
                                         <p className="review-date">{months[review.createdAt.slice(5, 7)]} {review.createdAt.slice(0, 4)}</p>
                                         <p className="review-review">{review.review}</p>
                                         {review.userId === user?.id &&
-                                            <div>
+                                            <div className="delete-review-btn">
 
                                                 <OpenModalButton
                                                     buttonText="Delete Review"

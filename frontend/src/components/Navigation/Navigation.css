@@ -1,6 +1,6 @@
 .nav {
     display: flex;
-    gap: 20px;
+    gap: 10px;
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid #CCCCCC;
@@ -23,7 +23,12 @@
 
 .link-new {
     text-decoration: none;
-    color:  #4c4a4a
+    color:  #40359f;
+    font-size: 14px;
+
+}
+.link-new:hover {
+    color: #FF5A5F;
 }
 
 li {
@@ -31,7 +36,7 @@ li {
 }
 
 .create-spot {
-    padding-left: 600px;
+    padding-left: 500px;
 }
 
 .home {

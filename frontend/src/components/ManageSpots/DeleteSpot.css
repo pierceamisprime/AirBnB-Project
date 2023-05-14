@@ -1,4 +1,4 @@
-.delete-review-modal {
+.delete-spot-modal {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -7,11 +7,11 @@
     width: 300px;
 }
 
-.delete-review-modal > p {
+.delete-spot-modal > p {
     font-weight: bold;
 }
 
-.delete-review-modal > button {
+.delete-spot-modal > button {
     width: 90%;
     margin: 5px;
     height: 40px;

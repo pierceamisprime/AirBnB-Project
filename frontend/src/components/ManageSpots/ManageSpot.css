@@ -1,3 +1,56 @@
 .manage-spots-page {
     margin: 35px;
 }
+
+.manage-spots {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 20px;
+    row-gap: 50px;
+}
+
+.manage-your-spots {
+    padding-bottom: 10px;
+}
+
+.create-new-spot-manage-btn {
+    background-color: #FF5A5F;
+    color: white;
+    border-color: #FF5A5F;
+    height: 40px;
+}
+
+.loco-rating {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.manage-price {
+    padding-bottom: 5px;
+    margin: 0px;
+}
+.update-spot {
+    background-color: white;
+    color: gray;
+    margin: 5px;
+    width: 90px;
+    height: 30px;
+
+
+}
+.update-spot:hover {
+    color: #FF5A5F;
+}
+
+.delete-spot {
+    background-color: white;
+    color: gray;
+    margin: 5px;
+    width: 90px;
+    height: 30px;
+
+}
+
+.delete-spot:hover {
+    color: #FF5A5F;
+}
