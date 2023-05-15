@@ -23,12 +23,14 @@
 
 .link-new {
     text-decoration: none;
-    color:  #40359f;
+    color: black;
     font-size: 14px;
 
 }
 .link-new:hover {
-    color: #FF5A5F;
+    border: 1px solid white;
+    box-shadow: 1px 5px 5px gray;
+
 }
 
 li {
