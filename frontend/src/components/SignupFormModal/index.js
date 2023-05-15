@@ -51,6 +51,8 @@ function SignupFormModal() {
           const input = inputs[i];
 
           if(!input.length) return true
+          if (inputs[4].length < 6 || inputs[5].length < 6) return true;
+
         }
         return false;
       }
