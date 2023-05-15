@@ -41,7 +41,7 @@ const ManageSpot = () => {
             <div className="manage-spots">
                 {spots.length > 0 && spots.map(spot =>
                     <li key={spot.id}>
-                         <img onClick={(e) => history.push(`/spots/${spot.id}`)} className="preview-img" src={spot?.previewImage}></img>
+                         <img key={spot.id} onClick={(e) => history.push(`/spots/${spot.id}`)} className="preview-img" src={spot?.previewImage ? spot.previewImage : 'https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg'}></img>
                          <div className="loco-rating">
                             <p>{spot.city}, {spot.state}</p>
                             <span><i className="fa-solid fa-star"></i>{spot.avgRating <= 5 ? spot.avgRating : 'New'}</span>
