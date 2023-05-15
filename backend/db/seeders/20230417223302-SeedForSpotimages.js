@@ -20,7 +20,7 @@ module.exports = {
    await queryInterface.bulkInsert(options, [
     {
       spotId: 1,
-      url: 'https://www.24hourfitness.com/images/clubs/club_slideshows/411/album1/large/image1.jpg',
+      url: 'https://www.24hourfitness.com/content/dam/24-hour-fitness/images/clubs/CA/moreno-valley/00925/image1.jpg',
       preview: true
     },
     {
