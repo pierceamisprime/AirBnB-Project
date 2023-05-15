@@ -75,14 +75,14 @@ const SpotForm = ({ spot, formType }) => {
 
     }
 
-    console.log('Spot', spot)
+    // console.log('Spot', spot)
 
     if (Object.values(errors).length) {
         console.log('errors', errors)
         return null
     }
 
-    console.log('FormType', formType)
+    // console.log('FormType', formType)
 
     if (formType === 'put') {
          const updatedSpot = await dispatch(editSpotThunk(spotForThunk, spotId))
@@ -109,6 +109,10 @@ const SpotForm = ({ spot, formType }) => {
 
 
         };
+
+        // const createUpdateBtn = () => {
+        //   return formType = 'post' ? 'create-btn' : 'update-btn'
+        // }
 
   return (
     <form id={formType} onSubmit={handleSubmit}>

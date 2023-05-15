@@ -41,7 +41,7 @@ const ManageSpot = () => {
             <div className="manage-spots">
                 {spots.length > 0 && spots.map(spot =>
                     <li key={spot.id}>
-                         <img onClick={(e) => history.push(`/spots/${spot.id}`)} className="preview-img" src={spot.previewImage}></img>
+                         <img onClick={(e) => history.push(`/spots/${spot.id}`)} className="preview-img" src={spot?.previewImage}></img>
                          <div className="loco-rating">
                             <p>{spot.city}, {spot.state}</p>
                             <span><i className="fa-solid fa-star"></i>{spot.avgRating <= 5 ? spot.avgRating : 'New'}</span>
