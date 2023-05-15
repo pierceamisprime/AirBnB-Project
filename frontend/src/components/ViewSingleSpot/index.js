@@ -13,7 +13,7 @@ const ViewSingleSpot = () => {
     const spot = useSelector(state => state.spots.singleSpot)
     const reviewsObj = useSelector(state => state.reviews.spot)
     // const user = useSelector(state => state.session.user)
-    console.log('Reviews:', reviewsObj)
+    // console.log('Reviews:', reviewsObj)
     const reviews = Object.values(reviewsObj)
 
 
@@ -65,7 +65,7 @@ const ViewSingleSpot = () => {
                 </div>
                 <div className="reserve-container">
                     <div className="reserve-info">
-                        <span className="price-single">${spot.price}     night</span>
+                        <span className="price-single">${parseFloat(spot.price).toFixed(2)}     night</span>
                         <div className="reserve-star-reviews">
                         <span className="star-single"><i className="fa-solid fa-star"></i>{spot.avgStarRating <= 5 ? parseFloat(spot.avgStarRating).toFixed(1) : 'New'}</span><span>•</span>
                         <span className="reviews-single">#{spot.numReviews} {spot.numReviews > 1 ? "reviews" : "review"}</span>

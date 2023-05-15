@@ -35,6 +35,13 @@ function LoginFormModal() {
 
     const disabledFuncReturn = disabled(credential, password);
 
+    const buttonClassFunc = (disabledFuncReturn) => {
+        let buttonClass;
+        if (disabledFuncReturn) buttonClass = 'login-button-off';
+        else buttonClass = 'login-button-on'
+        return buttonClass;
+      }
+
     return (
         <div className="login-container">
             <h1>Log In</h1>
@@ -64,7 +71,7 @@ function LoginFormModal() {
                 {errors.credential && (
                     <p className="display-errors">{errors.credential}</p>
                 )}
-                <button type="submit" disabled={disabledFuncReturn} className='login-btn'>Log In</button>
+                <button type="submit" disabled={disabledFuncReturn} className={buttonClassFunc(disabledFuncReturn)}>Log In</button>
             </form>
                 <p className="demo-user" onClick={demoUser}>Log In as Demo User</p>
         </div>

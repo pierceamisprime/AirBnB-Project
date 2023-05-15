@@ -13,14 +13,6 @@
 }
 
 
-.sign-up-btn {
-    background-color: #FF5A5F;
-    color: white;
-    width: 200px;
-    height: 40px;
-    border: 1px solid gray;
-    border-radius: 5px;
-}
 
 .sign-up > label > input{
     width: 200px;
@@ -39,11 +31,17 @@
 .signup-btn-disabled-btn,
  .signup-btn-btn {
 
-    background-color: #FF5A5F;
-    color: white;
+
     width: 200px;
     height: 40px;
     border: 1px solid gray;
     border-radius: 5px;
+    cursor: pointer;
+
+ }
+
+ .signup-btn-btn {
+    background-color: #FF5A5F;
+    color: white;
 
  }

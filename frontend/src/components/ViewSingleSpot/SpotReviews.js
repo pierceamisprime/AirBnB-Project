@@ -24,7 +24,7 @@ const SpotReviews = ({ reviews, spotId }) => {
     }, [dispatch, spotId])
 
 
-    if (!spot || !spotId || !user) return null
+    if (!spot || !spotId ) return null
 
     let months = {
         "01": "January",
@@ -46,15 +46,16 @@ const SpotReviews = ({ reviews, spotId }) => {
 
     return (
         <div>
-            {(user?.id !== spot.ownerId) && !(reviews.find(review => review.userId === user.id)) &&
+            {(user?.id !== spot.ownerId) && !(reviews.find(review => review.userId === user?.id)) &&
                 <div  className='create-review-btn'>
+                    {user?.id &&
                     <OpenModalButton
                         // className='create-review-btn'
                         buttonText="Post Your Review"
                         modalComponent={<CreateReviewModal spotId={spotId} />}
-                    />
+                    />}
                 </div>}
-            {!reviews.length && user.id !== spot.ownerId ?
+            {!reviews.length && user?.id !== spot.ownerId ?
                 (<div>
                     <p>Be the first to post a review!</p>
                 </div>) :
