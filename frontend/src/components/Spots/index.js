@@ -15,7 +15,6 @@ const SpotIndex = () => {
     }, [dispatch])
 
     if (!spotsObj) {
-        // console.log('no spots found')
         return null
     }
 

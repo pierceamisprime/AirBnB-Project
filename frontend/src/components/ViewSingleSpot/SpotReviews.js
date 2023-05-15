@@ -42,7 +42,7 @@ const SpotReviews = ({ reviews, spotId }) => {
     }
 
     const newReviews = reviews.toReversed()
-    console.log('Reviews:', newReviews)
+    // console.log('Reviews:', newReviews)
 
     return (
         <div>

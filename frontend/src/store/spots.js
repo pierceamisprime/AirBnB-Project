@@ -53,7 +53,6 @@ export const fetchOneSpot = (spotId) => async dispatch => {
 
     if (response.ok) {
         const spot = await response.json()
-        console.log('Spot from fetch:', spot)
         dispatch(viewSpot(spot))
         return spot
     }
@@ -69,8 +68,6 @@ export const createNewSpot = (spot, spotImages) => async dispatch => {
 
     if (response.ok) {
         const newSpot = await response.json()
-        console.log('New Spot From Thunk:', newSpot)
-        console.log('images from thunk===>', spotImages)
         for (let i = 0; i < spotImages.length; i++) {
             await csrfFetch(`/api/spots/${newSpot.id}/images`, {
                 method: "POST",
