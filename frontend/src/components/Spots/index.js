@@ -35,7 +35,7 @@ const SpotIndex = () => {
                             <p>{spot.city}, {spot.state}</p>
                             <span className="landing-rating"><i className="fa-solid fa-star"></i>{spot.avgRating <= 5 ? parseFloat(spot.avgRating).toFixed(1) : 'New'}</span>
                         </div>
-                            <p className="landing-price">${spot.price}/night</p>
+                            <p className="landing-price">${parseFloat(spot.price).toFixed(2)}/night</p>
                     </Link>
                 ))}
             </div>

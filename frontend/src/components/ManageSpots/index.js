@@ -46,7 +46,7 @@ const ManageSpot = () => {
                             <p>{spot.city}, {spot.state}</p>
                             <span><i className="fa-solid fa-star"></i>{spot.avgRating <= 5 ? spot.avgRating : 'New'}</span>
                          </div>
-                            <p className="manage-price">${spot.price} /night</p>
+                            <p className="manage-price">${parseFloat(spot.price).toFixed(2)} /night</p>
 
                             <button className="update-spot" onClick={(e) => history.push(`/spots/${spot.id}/edit`)}>
                                 Update
