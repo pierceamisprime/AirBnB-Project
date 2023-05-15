@@ -219,6 +219,7 @@ const SpotForm = ({ spot, formType }) => {
                     placeholder='$ Price per night (USD)'
                     onChange={(e) => setPrice(e.target.value)}
                     min={0}
+                    step='.01'
                     />
                 </label>
                 <p className="display-errors">{errors.price}</p>
