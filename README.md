@@ -1,5 +1,27 @@
 # AirBnB-Project
 
+## Welcome to FitBnB
+
+Welcome to my very first fullstack project, FitBnB! This is my first App Academy fullstack project, I hope you enjoy checking it out.
+
+# Technologies
+
+ SQL, Sequelize, React and Redux
+
+ ## Landing page
+
+ ![readme-example-1](https://i.imgur.com/w2iPL2z.png)
+
+
+ ## Launching the App Locally
+
+1.  ```cd``` into ```authenticate-me``` directory
+2. Run ```npm install``` to install any and all dependicies
+3. Run ```npm start``` in the ```backend``` directory.
+4. Run ```npm start``` in the ```frontend``` directory.
+5. FitBnB shoud load automatically in your browser!
+
+
 <!--!!START SILENT -->
 # AirBnB Clone
 <!--!!END -->
@@ -88,7 +110,7 @@ Returns the information about the current user that is logged in.
         "lastName": "Smith",
         "email": "john.smith@gmail.com",
         "username": "JohnSmith"
-      } 
+      }
     }
     ```
 
@@ -144,7 +166,7 @@ information.
         "lastName": "Smith",
         "email": "john.smith@gmail.com",
         "username": "JohnSmith"
-      } 
+      }
     }
     ```
 
