@@ -42,7 +42,7 @@ export const fetchSpots = () => async dispatch => {
 
     if (response.ok) {
         const spots = await response.json()
-        console.log('spots ===>', spots)
+        // console.log('spots ===>', spots)
         dispatch(loadSpots(spots))
         return spots
     }
